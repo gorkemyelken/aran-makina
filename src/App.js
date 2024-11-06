@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
-import './App.css'
+import './App.css';
 
 function App() {
   return (
@@ -18,7 +18,21 @@ function App() {
         <Route path="/urunler/:productId" element={<ProductPage />} />
         <Route path="/iletisim" element={<Contact />} />
       </Routes>
-      <Footer/>
+      <Footer />
+      
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/1234567890"
+        className="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+          className="whatsapp-icon"
+        />
+      </a>
     </Router>
   );
 }

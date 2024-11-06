@@ -74,23 +74,7 @@
   margin-top: 30px;
 }
 
-.whatsapp-float {
-  position: fixed;
-  top: 50%; /* Dikey olarak ortada */
-  right: 10px;
-  transform: translateY(-50%);
-  z-index: 1000;
-  animation: bounce 2s infinite;
-  background-color: #25D366;
-  border-radius: 50%;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-.whatsapp-icon {
-  width: 40px;
-  height: 40px;
-}
 
 @keyframes fadeIn {
   0% {
