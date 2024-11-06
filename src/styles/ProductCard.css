@@ -1,0 +1,52 @@
+.product-card {
+  max-width: 345px;
+  height: 350px; /* Kart yüksekliğini sabitle */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-title {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: bold;
+  text-align: center;
+  color: #004080; /* Başlık rengi */
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between; /* Butonları soldan ve sağdan hizalar */
+  align-items: center;
+  padding: 0 16px;
+}
+
+.details-button {
+  color: #004080;
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid #004080;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.details-button:hover {
+  background-color: #004080;
+  color: #fff;
+}
+
+.whatsapp-button {
+  color: #25D366 !important; /* WhatsApp yeşil rengi */
+  transition: transform 0.3s;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
