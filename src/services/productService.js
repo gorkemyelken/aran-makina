@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'https://aran-makina-8fce3ead0cbf.herokuapp.com/api';
 
 export const fetchProducts = async () => {
   const response = await axios.get(`${API_BASE_URL}/products`);

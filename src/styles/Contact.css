@@ -4,6 +4,7 @@
     background-color: #f9f9f9;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100vh;
   }
   
   .contact-title {
@@ -33,5 +34,16 @@
     display: flex;
     justify-content: flex-start;
     gap: 10px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .infos {
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  .map {
+    padding-top: 100px;
   }
   
