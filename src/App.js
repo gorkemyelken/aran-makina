@@ -18,7 +18,6 @@ function App() {
         <Route path="/urunler/:productId" element={<ProductPage />} />
         <Route path="/iletisim" element={<Contact />} />
       </Routes>
-      <Footer />
       
       {/* WhatsApp Floating Button */}
       <a
