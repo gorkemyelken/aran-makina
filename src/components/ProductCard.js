@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
         <Button
           size="small"
           component={Link}
-          to={`/products/${product.productId}`}
+          to={`/urunler/${product.productId}`}
           className="details-button"
         >
           Detayları Gör

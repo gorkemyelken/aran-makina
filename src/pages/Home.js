@@ -41,7 +41,7 @@ const Home = () => {
           ))}
         </Grid>
         <Box textAlign="center" marginTop="20px">
-          <Link to="/products" className="see-more-link">
+          <Link to="/urunler" className="see-more-link">
             Tüm Ürünleri Görüntüle
           </Link>
         </Box>

@@ -9,5 +9,5 @@ export const fetchProducts = async () => {
 
 export const fetchProductById = async (productId) => {
   const response = await axios.get(`${API_BASE_URL}/products/${productId}`);
-  return response.data;
+  return response.data.data;
 };
