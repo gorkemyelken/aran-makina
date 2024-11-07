@@ -1,13 +1,26 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Container, Typography, Box, Link } from '@mui/material';
 import '../styles/Footer.css';
 
 const Footer = () => {
   return (
-    <Box component="footer" className="footer">
-      <Typography variant="body2" className="footerText">
-        © 2024 Aran Makina. Tüm hakları saklıdır.
-      </Typography>
+    <Box className="footer-container">
+      <Container maxWidth="lg">
+        <Typography variant="body1" className="footer-text">
+          © 2024 Aran Makina. Tüm Hakları Saklıdır.
+        </Typography>
+        <Box className="footer-links">
+          <Link href="/privacy" color="inherit" className="footer-link">
+            Gizlilik Politikası
+          </Link>
+          <Link href="/terms" color="inherit" className="footer-link">
+            Kullanım Şartları
+          </Link>
+          <Link href="/contact" color="inherit" className="footer-link">
+            İletişim
+          </Link>
+        </Box>
+      </Container>
     </Box>
   );
 };

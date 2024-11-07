@@ -11,15 +11,19 @@ import { Link } from "react-router-dom";
 import { fetchProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import Footer from "../components/Footer"; // Footer bileşenini ekliyoruz
 import "../styles/Home.css";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState([]);
 
   useEffect(() => {
     const loadProducts = async () => {
       const productsData = await fetchProducts();
-      setProducts(productsData);
+
+      // İlk 6 ürünü al ve state'e ekle
+      const initialProducts = productsData.slice(0, 6);
+      setVisibleProducts(initialProducts);
     };
     loadProducts();
   }, []);
@@ -41,17 +45,19 @@ const Home = () => {
         </Typography>
         <Divider className="divider" />
         <Grid container spacing={4}>
-          {products.slice(0, 3).map((product, index) => (
+          {visibleProducts.map((product, index) => (
             <Grid item key={product.productId} xs={12} sm={6} md={4}>
-              <ProductCard product={product} index={index} />
+              <ProductCard product={product} />
             </Grid>
           ))}
         </Grid>
-        <Box textAlign="center" marginTop="20px">
-          <Link to="/urunler" className="see-more-link">
-            Tüm Ürünleri Görüntüle
-          </Link>
-        </Box>
+        {visibleProducts.length > 0 && (
+          <Box textAlign="center" marginTop="20px">
+            <Link to="/urunler" className="see-more-link">
+              Tüm Ürünleri Görüntüle
+            </Link>
+          </Box>
+        )}
       </Container>
 
       <Box className="social-icons">
@@ -84,6 +90,8 @@ const Home = () => {
           <LinkedIn style={{ color: "#0077B5" }} />
         </IconButton>
       </Box>
+
+      <Footer />
     </Box>
   );
 };

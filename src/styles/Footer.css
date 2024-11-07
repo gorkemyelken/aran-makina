@@ -1,20 +1,28 @@
-/* Footer.css */
+.footer-container {
+  background-color: #004080;
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 50px;
+}
 
-.footer {
-    background-color: #333; /* Koyu arka plan */
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
-  
-  .footerText {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-  }
-  
+.footer-text {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: #cce0ff;
+}

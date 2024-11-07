@@ -11,6 +11,7 @@ import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProducts from './pages/admin/AdminProducts';
 import AdminUsers from './pages/admin/AdminUsers';
+import About from './pages/About';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/hakkimizda" element={<About />} />
         <Route path="/urunler" element={<ProductList />} />
         <Route path="/urunler/:productId" element={<ProductPage />} />
         <Route path="/iletisim" element={<Contact />} />
