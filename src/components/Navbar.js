@@ -7,10 +7,10 @@ import {
   Menu,
   MenuItem,
   Typography,
+  Box,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShareIcon from "@mui/icons-material/Share";
-import { Box } from "@mui/system";
 import { useMediaQuery } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
@@ -45,6 +45,14 @@ const Navbar = () => {
     { name: "İLETİŞİM", path: "/iletisim" },
   ];
 
+  const adminPages = [
+    { name: "Dashboard", path: "/admin/dashboard" },
+    { name: "Ürünler", path: "/admin/products" },
+    { name: "Kullanıcılar", path: "/admin/users" },
+  ];
+
+  const isAdminPath = location.pathname.startsWith('/admin');
+
   return (
     <AppBar
       position="sticky"
@@ -67,11 +75,9 @@ const Navbar = () => {
               <MenuIcon sx={{ color: "black" }} />
             </IconButton>
 
-            <a href="/" style={{ display: "flex", alignItems: "center" }}>
-              <Typography variant="h6" sx={{ color: "black", fontFamily: "Roboto", fontWeight: "bold" }}>
-                Aran Makina
-              </Typography>
-            </a>
+            <Typography variant="h6" sx={{ color: "black", fontFamily: "Roboto", fontWeight: "bold" }}>
+              {isAdminPath ? "Admin Paneli" : "Aran Makina"}
+            </Typography>
 
             <IconButton color="inherit" onClick={handleShare}>
               <ShareIcon sx={{ color: "black" }} />
@@ -83,7 +89,7 @@ const Navbar = () => {
               onClose={handleMenuClose}
               keepMounted
             >
-              {pages.map((page, index) => (
+              {(isAdminPath ? adminPages : pages).map((page, index) => (
                 <MenuItem
                   key={index}
                   onClick={handleMenuClose}
@@ -104,15 +110,13 @@ const Navbar = () => {
         ) : (
           <>
             <Box sx={{ position: "absolute", left: "20px" }}>
-              <a href="/" style={{ textDecoration: "none" }}>
-                <Typography variant="h5" sx={{ color: "#000", fontFamily: "Roboto", fontWeight: "bold" }}>
-                  Aran Makina
-                </Typography>
-              </a>
+              <Typography variant="h5" sx={{ color: "#000", fontFamily: "Roboto", fontWeight: "bold" }}>
+                {isAdminPath ? "Admin Paneli" : "Aran Makina"}
+              </Typography>
             </Box>
 
             <Box sx={{ display: "flex", gap: 3 }}>
-              {pages.map((page, index) => (
+              {(isAdminPath ? adminPages : pages).map((page, index) => (
                 <Button
                   key={index}
                   component={Link}
@@ -131,16 +135,18 @@ const Navbar = () => {
               ))}
             </Box>
 
-            <IconButton
-              sx={{
-                position: "absolute",
-                right: "20px",
-                color: "black",
-              }}
-              onClick={handleShare}
-            >
-              <ShareIcon />
-            </IconButton>
+            {!isAdminPath && (
+              <IconButton
+                sx={{
+                  position: "absolute",
+                  right: "20px",
+                  color: "black",
+                }}
+                onClick={handleShare}
+              >
+                <ShareIcon />
+              </IconButton>
+            )}
           </>
         )}
       </Toolbar>

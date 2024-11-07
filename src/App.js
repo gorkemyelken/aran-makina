@@ -7,6 +7,10 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import './App.css';
+import AdminLayout from './components/admin/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminProducts from './pages/admin/AdminProducts';
+import AdminUsers from './pages/admin/AdminUsers';
 
 function App() {
   return (
@@ -17,6 +21,12 @@ function App() {
         <Route path="/urunler" element={<ProductList />} />
         <Route path="/urunler/:productId" element={<ProductPage />} />
         <Route path="/iletisim" element={<Contact />} />
+        <Route path="/admin" element={<AdminLayout />} >
+                <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="products" element={<AdminProducts />} />
+                <Route path="users" element={<AdminUsers />} />
+        </Route>
+
       </Routes>
       
       {/* WhatsApp Floating Button */}

@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, Box, Grid, IconButton, Divider } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { fetchProducts } from '../services/productService';
-import ProductCard from '../components/ProductCard';
-import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
-import '../styles/Home.css';
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Typography,
+  Box,
+  Grid,
+  IconButton,
+  Divider,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import { fetchProducts } from "../services/productService";
+import ProductCard from "../components/ProductCard";
+import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import "../styles/Home.css";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -34,9 +41,9 @@ const Home = () => {
         </Typography>
         <Divider className="divider" />
         <Grid container spacing={4}>
-          {products.slice(0, 3).map((product) => (
+          {products.slice(0, 3).map((product, index) => (
             <Grid item key={product.productId} xs={12} sm={6} md={4}>
-              <ProductCard product={product} />
+              <ProductCard product={product} index={index} />
             </Grid>
           ))}
         </Grid>
@@ -48,17 +55,33 @@ const Home = () => {
       </Container>
 
       <Box className="social-icons">
-        <IconButton href="https://facebook.com" target="_blank" aria-label="Facebook">
-          <Facebook style={{ color: '#3b5998' }} />
+        <IconButton
+          href="https://facebook.com"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <Facebook style={{ color: "#3b5998" }} />
         </IconButton>
-        <IconButton href="https://twitter.com" target="_blank" aria-label="Twitter">
-          <Twitter style={{ color: '#1DA1F2' }} />
+        <IconButton
+          href="https://twitter.com"
+          target="_blank"
+          aria-label="Twitter"
+        >
+          <Twitter style={{ color: "#1DA1F2" }} />
         </IconButton>
-        <IconButton href="https://instagram.com" target="_blank" aria-label="Instagram">
-          <Instagram style={{ color: '#C13584' }} />
+        <IconButton
+          href="https://instagram.com"
+          target="_blank"
+          aria-label="Instagram"
+        >
+          <Instagram style={{ color: "#C13584" }} />
         </IconButton>
-        <IconButton href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-          <LinkedIn style={{ color: '#0077B5' }} />
+        <IconButton
+          href="https://linkedin.com"
+          target="_blank"
+          aria-label="LinkedIn"
+        >
+          <LinkedIn style={{ color: "#0077B5" }} />
         </IconButton>
       </Box>
     </Box>
