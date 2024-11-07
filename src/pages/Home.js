@@ -12,6 +12,7 @@ import { fetchProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 import Footer from "../components/Footer"; // Footer bileşenini ekliyoruz
+import { motion } from "framer-motion"; // framer-motion import edildi
 import "../styles/Home.css";
 
 const Home = () => {
@@ -47,7 +48,13 @@ const Home = () => {
         <Grid container spacing={4}>
           {visibleProducts.map((product, index) => (
             <Grid item key={product.productId} xs={12} sm={6} md={4}>
-              <ProductCard product={product} />
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.5 }} // Sırayla gelme animasyonu
+              >
+                <ProductCard product={product} />
+              </motion.div>
             </Grid>
           ))}
         </Grid>
@@ -90,8 +97,6 @@ const Home = () => {
           <LinkedIn style={{ color: "#0077B5" }} />
         </IconButton>
       </Box>
-
-      <Footer />
     </Box>
   );
 };

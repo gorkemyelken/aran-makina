@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Typography, Grid, TextField, Box, Divider } from '@mui/material';
 import { fetchProducts } from '../services/productService';
 import ProductCard from '../components/ProductCard';
+import { motion } from 'framer-motion'; // Framer Motion import edildi
 import '../styles/ProductList.css';
 
 const ProductList = () => {
@@ -52,9 +53,15 @@ const ProductList = () => {
         />
       </Box>
       <Grid container spacing={4}>
-        {filteredProducts.map((product) => (
+        {filteredProducts.map((product, index) => (
           <Grid item key={product.productId} xs={12} sm={6} md={4}>
-            <ProductCard product={product} />
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2, duration: 0.5 }} // Sırayla gelme animasyonu
+            >
+              <ProductCard product={product} />
+            </motion.div>
           </Grid>
         ))}
       </Grid>

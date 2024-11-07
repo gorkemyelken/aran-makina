@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Typography, Box, Divider, Grid, IconButton } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+import { motion } from 'framer-motion'; // framer-motion import edildi
 import '../styles/About.css';
 
 const About = () => {
@@ -21,7 +22,13 @@ const About = () => {
       </Box>
       <Grid container spacing={4}>
         <Grid item xs={12}>
-          <Box className="about-image" />
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <Box className="about-image" />
+          </motion.div>
         </Grid>
       </Grid>
       <Box className="social-icons" mt={3} textAlign="center">
