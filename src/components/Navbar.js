@@ -43,7 +43,7 @@ const Navbar = () => {
     { name: "HAKKIMIZDA", path: "/hakkimizda" },
     { name: "ÜRÜNLER", path: "/urunler" },
     { name: "İLETİŞİM", path: "/iletisim" },
-    { name: "ADMİN PANELİ", path: "/admin" },
+    { name: "ADMİN PANELİ", path: "/admin/dashboard" },
   ];
 
   const adminPages = [

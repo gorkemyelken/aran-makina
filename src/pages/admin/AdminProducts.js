@@ -89,9 +89,11 @@ const AdminProducts = () => {
     };
 
     const handleOpenFeatureModal = (product) => {
+        console.log('Selected Product:', product); // Debugging için eklendi
         setSelectedProduct(product);
         setOpenFeatureModal(true);
     };
+    
 
     const handleCloseFeatureModal = () => {
         setOpenFeatureModal(false);
