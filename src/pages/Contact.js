@@ -7,7 +7,7 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
-import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import { Facebook, Instagram, WhatsApp, Email } from "@mui/icons-material";
 import "../styles/Contact.css";
 
 const Contact = () => {
@@ -38,25 +38,21 @@ const Contact = () => {
             <Facebook style={{ color: "#3b5998" }} />
           </IconButton>
           <IconButton
-            href="https://twitter.com"
-            target="_blank"
-            aria-label="Twitter"
-          >
-            <Twitter style={{ color: "#1DA1F2" }} />
-          </IconButton>
-          <IconButton
-            href="https://instagram.com"
+            href="https://www.instagram.com/aranmakine/"
             target="_blank"
             aria-label="Instagram"
           >
             <Instagram style={{ color: "#C13584" }} />
           </IconButton>
           <IconButton
-            href="https://linkedin.com"
+            href="https://wa.me/905436256412"
             target="_blank"
-            aria-label="LinkedIn"
+            aria-label="WhatsApp"
           >
-            <LinkedIn style={{ color: "#0077B5" }} />
+            <WhatsApp style={{ color: "#25D366" }} />
+          </IconButton>
+          <IconButton href="mailto:bilgi@arancaraskal.com" aria-label="Email">
+            <Email style={{ color: "#014DAD" }} />
           </IconButton>
         </Box>
       </Grid>
