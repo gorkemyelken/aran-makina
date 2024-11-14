@@ -15,7 +15,7 @@ const AdminDashboard = () => {
         <Grid item xs={12} md={4}>
           <Paper sx={{ padding: '20px', textAlign: 'center' }}>
             <Typography variant="h6">Toplam Ürün</Typography>
-            <Typography variant="h3">150</Typography>
+            <Typography variant="h3">13</Typography>
           </Paper>
         </Grid>
       </Grid>
