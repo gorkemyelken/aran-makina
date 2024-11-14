@@ -6,7 +6,6 @@ import {
   Button,
   Menu,
   MenuItem,
-  Typography,
   Box,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -46,6 +45,7 @@ const Navbar = () => {
     { name: "ADMİN PANELİ", path: "/admin/dashboard" },
   ];
 
+  // adminPages'i tanımlayın
   const adminPages = [
     { name: "Dashboard", path: "/admin/dashboard" },
     { name: "Ürünler", path: "/admin/products" },
@@ -76,9 +76,14 @@ const Navbar = () => {
               <MenuIcon sx={{ color: "black" }} />
             </IconButton>
 
-            <Typography variant="h6" sx={{ color: "black", fontFamily: "Roboto", fontWeight: "bold" }}>
-              {isAdminPath ? "Admin Paneli" : "Aran Makina"}
-            </Typography>
+            {/* Logo */}
+            <Link to="/">
+              <img
+                src="/logo.jpg"
+                alt="Aran Makina Logo"
+                style={{ height: "50px", marginLeft: "10px" }}
+              />
+            </Link>
 
             <IconButton color="inherit" onClick={handleShare}>
               <ShareIcon sx={{ color: "black" }} />
@@ -98,9 +103,8 @@ const Navbar = () => {
                   to={page.path}
                   sx={{
                     fontFamily: "Roboto",
-                    color: "#000",
-                    textDecoration:
-                      location.pathname === page.path ? "underline" : "none",
+                    color: location.pathname === page.path ? "#014DAD" : "#000",
+                    fontWeight: location.pathname === page.path ? "bold" : "normal",
                   }}
                 >
                   {page.name}
@@ -111,24 +115,28 @@ const Navbar = () => {
         ) : (
           <>
             <Box sx={{ position: "absolute", left: "20px" }}>
-              <Typography variant="h5" sx={{ color: "#000", fontFamily: "Roboto", fontWeight: "bold" }}>
-                {isAdminPath ? "Admin Paneli" : "Aran Makina"}
-              </Typography>
+              <Link to="/">
+                <img
+                  src="/logo.jpg"
+                  alt="Aran Makina Logo"
+                  style={{ height: "60px" }}
+                />
+              </Link>
             </Box>
 
             <Box sx={{ display: "flex", gap: 3 }}>
-              {(isAdminPath ? adminPages : pages).map((page, index) => (
+              {pages.map((page, index) => (
                 <Button
                   key={index}
                   component={Link}
                   to={page.path}
                   sx={{
                     fontFamily: "Roboto",
-                    letterSpacing: "2px",
+                    letterSpacing: "1px",
                     fontSize: "1.2rem",
-                    color: "#000",
-                    textDecoration:
-                      location.pathname === page.path ? "underline" : "none",
+                    color: location.pathname === page.path ? "#014DAD" : "#000",
+                    fontWeight: location.pathname === page.path ? "bold" : "normal",
+                    borderBottom: location.pathname === page.path ? "2px solid #014DAD" : "none",
                   }}
                 >
                   {page.name}
