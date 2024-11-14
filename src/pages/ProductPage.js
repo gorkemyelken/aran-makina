@@ -161,43 +161,65 @@ const ProductPage = () => {
         </Grid>
 
         {/* Diğer özellikleri aşağıda ortalanmış bir tablo şeklinde göster */}
-        <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
-  <TableContainer component={Paper} sx={{ maxWidth: "800px", borderRadius: "12px", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)" }}>
-    <Table>
-      <TableHead>
-        <TableRow sx={{ backgroundColor: "#014DAD" }}>
-          <TableCell sx={{ fontWeight: "bold", color: "#ffffff", fontSize: "1rem" }}>
-            Özellik
-          </TableCell>
-          <TableCell sx={{ fontWeight: "bold", color: "#ffffff", fontSize: "1rem" }}>
-            Değer
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {product.features
-          .filter(
-            (feature) =>
-              feature.featureName.name !== "Model" &&
-              feature.featureName.name !== "Kapasite"
-          )
-          .map((feature, index) => (
-            <TableRow
-              key={feature.productFeatureId}
-              sx={{
-                backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#e0e0e0",
-              }}
-            >
-              <TableCell sx={{ fontWeight: "bold" }}>{feature.featureName.name}</TableCell>
-              <TableCell>{feature.value}</TableCell>
-            </TableRow>
-          ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-</Box>
-
-
+        <Box
+          sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}
+        >
+          <TableContainer
+            component={Paper}
+            sx={{
+              maxWidth: "800px",
+              borderRadius: "12px",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Table>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: "#014DAD" }}>
+                  <TableCell
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#ffffff",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    Özellik
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#ffffff",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    Değer
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {product.features
+                  .filter(
+                    (feature) =>
+                      feature.featureName.name !== "Model" &&
+                      feature.featureName.name !== "Kapasite"
+                  )
+                  .map((feature, index) => (
+                    <TableRow
+                      key={feature.productFeatureId}
+                      sx={{
+                        backgroundColor:
+                          index % 2 === 0 ? "#f9f9f9" : "#e0e0e0",
+                      }}
+                    >
+                      <TableCell sx={{ fontWeight: "bold" }}>
+                        {feature.featureName.name}
+                      </TableCell>
+                      <TableCell>{feature.value}</TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
       </Container>
     )
   );
