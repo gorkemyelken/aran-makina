@@ -11,8 +11,7 @@ import { Link } from "react-router-dom";
 import { fetchProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
-import Footer from "../components/Footer"; // Footer bileşenini ekliyoruz
-import { motion } from "framer-motion"; // framer-motion import edildi
+import { motion } from "framer-motion";
 import "../styles/Home.css";
 
 const Home = () => {
@@ -21,9 +20,7 @@ const Home = () => {
   useEffect(() => {
     const loadProducts = async () => {
       const productsData = await fetchProducts();
-
-      // İlk 6 ürünü al ve state'e ekle
-      const initialProducts = productsData.slice(0, 6);
+      const initialProducts = productsData.slice(0, 8); // İlk 8 ürünü al (4x2 görünüm için)
       setVisibleProducts(initialProducts);
     };
     loadProducts();
@@ -47,11 +44,11 @@ const Home = () => {
         <Divider className="divider" />
         <Grid container spacing={4}>
           {visibleProducts.map((product, index) => (
-            <Grid item key={product.productId} xs={12} sm={6} md={4}>
+            <Grid item key={product.productId} xs={12} sm={6} md={3}>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.5 }} // Sırayla gelme animasyonu
+                transition={{ delay: index * 0.2, duration: 0.5 }}
               >
                 <ProductCard product={product} />
               </motion.div>
@@ -73,28 +70,28 @@ const Home = () => {
           target="_blank"
           aria-label="Facebook"
         >
-          <Facebook style={{ color: "#3b5998" }} />
+          <Facebook style={{ color: "#014DAD" }} />
         </IconButton>
         <IconButton
           href="https://twitter.com"
           target="_blank"
           aria-label="Twitter"
         >
-          <Twitter style={{ color: "#1DA1F2" }} />
+          <Twitter style={{ color: "#014DAD" }} />
         </IconButton>
         <IconButton
           href="https://instagram.com"
           target="_blank"
           aria-label="Instagram"
         >
-          <Instagram style={{ color: "#C13584" }} />
+          <Instagram style={{ color: "#014DAD" }} />
         </IconButton>
         <IconButton
           href="https://linkedin.com"
           target="_blank"
           aria-label="LinkedIn"
         >
-          <LinkedIn style={{ color: "#0077B5" }} />
+          <LinkedIn style={{ color: "#014DAD" }} />
         </IconButton>
       </Box>
     </Box>

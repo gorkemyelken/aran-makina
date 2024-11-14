@@ -14,6 +14,7 @@ import AdminUsers from './pages/admin/AdminUsers';
 import About from './pages/About';
 import './App.css';
 import ScrollToTop from './components/ScrollToTop';
+import CategoryBar from './components/CategoryBar';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -113,6 +114,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <Navbar />
+      <CategoryBar/>
       <AnimatedRoutes />
       <Footer />
       {/* WhatsApp Floating Button */}

@@ -1,17 +1,23 @@
 import React from 'react';
 import { Card, CardContent, Typography, CardActions, Button, CardMedia, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate eklendi
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import '../styles/ProductCard.css';
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/urunler/${product.productId}`);
+  };
+
   const handleWhatsAppClick = () => {
     const message = `Merhaba, ${product.name} hakkında bilgi almak istiyorum.`;
     window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
-    <Card className="product-card">
+    <Card className="product-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
       <CardMedia
         component="img"
         alt={product.name}
@@ -29,6 +35,7 @@ const ProductCard = ({ product }) => {
           component={Link}
           to={`/urunler/${product.productId}`}
           className="details-button"
+          onClick={(e) => e.stopPropagation()} // Kartın tıklanma işlevini durdurur
         >
           Detayları Gör
         </Button>

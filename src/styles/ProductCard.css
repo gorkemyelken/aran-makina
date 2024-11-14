@@ -1,6 +1,6 @@
 .product-card {
   max-width: 345px;
-  height: 350px; /* Kart yüksekliğini sabitle */
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,22 +17,22 @@
 }
 
 .product-title {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important; /* Yazı tipi */
   font-weight: bold;
   text-align: center;
-  color: #004080; /* Başlık rengi */
+  color: #000 !important; /* Başlık rengi siyah */
 }
 
 .card-actions {
   display: flex;
-  justify-content: space-between; /* Butonları soldan ve sağdan hizalar */
+  justify-content: space-between;
   align-items: center;
   padding: 0 16px;
 }
 
 .details-button {
   color: #004080;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif !important; /* Yazı tipi */
   border: 1px solid #004080;
   transition: background-color 0.3s, color 0.3s;
 }
