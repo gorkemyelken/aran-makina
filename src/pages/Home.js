@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
-import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import { Instagram, WhatsApp, Email, Facebook } from "@mui/icons-material"; // Facebook ikonu eklendi
 import { motion } from "framer-motion";
 import "../styles/Home.css";
 
@@ -66,32 +66,31 @@ const Home = () => {
 
       <Box className="social-icons">
         <IconButton
-          href="https://facebook.com"
+          href="https://www.facebook.com"
           target="_blank"
           aria-label="Facebook"
         >
           <Facebook style={{ color: "#014DAD" }} />
         </IconButton>
         <IconButton
-          href="https://twitter.com"
-          target="_blank"
-          aria-label="Twitter"
-        >
-          <Twitter style={{ color: "#014DAD" }} />
-        </IconButton>
-        <IconButton
-          href="https://instagram.com"
+          href="https://www.instagram.com/aranmakine/"
           target="_blank"
           aria-label="Instagram"
         >
           <Instagram style={{ color: "#014DAD" }} />
         </IconButton>
         <IconButton
-          href="https://linkedin.com"
+          href="https://wa.me/905436256412"
           target="_blank"
-          aria-label="LinkedIn"
+          aria-label="WhatsApp"
         >
-          <LinkedIn style={{ color: "#014DAD" }} />
+          <WhatsApp style={{ color: "#25D366" }} />
+        </IconButton>
+        <IconButton
+          href="mailto:bilgi@arancaraskal.com"
+          aria-label="Email"
+        >
+          <Email style={{ color: "#014DAD" }} />
         </IconButton>
       </Box>
     </Box>

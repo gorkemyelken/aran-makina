@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typography, Box, Divider, Grid, IconButton } from '@mui/material';
-import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
-import { motion } from 'framer-motion'; // framer-motion import edildi
+import { Facebook, Instagram, WhatsApp, Email } from '@mui/icons-material'; // Güncellenmiş ikonlar
+import { motion } from 'framer-motion';
 import '../styles/About.css';
 
 const About = () => {
@@ -35,14 +35,14 @@ const About = () => {
         <IconButton href="https://facebook.com" target="_blank" aria-label="Facebook">
           <Facebook style={{ color: '#3b5998' }} />
         </IconButton>
-        <IconButton href="https://twitter.com" target="_blank" aria-label="Twitter">
-          <Twitter style={{ color: '#1DA1F2' }} />
-        </IconButton>
-        <IconButton href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <IconButton href="https://www.instagram.com/aranmakine/" target="_blank" aria-label="Instagram">
           <Instagram style={{ color: '#C13584' }} />
         </IconButton>
-        <IconButton href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-          <LinkedIn style={{ color: '#0077B5' }} />
+        <IconButton href="https://wa.me/905436256412" target="_blank" aria-label="WhatsApp">
+          <WhatsApp style={{ color: '#25D366' }} />
+        </IconButton>
+        <IconButton href="mailto:bilgi@arancaraskal.com" aria-label="Email">
+          <Email style={{ color: '#014DAD' }} />
         </IconButton>
       </Box>
     </Container>

@@ -80,6 +80,7 @@ const CategoryBar = () => {
           padding: '2px 5px',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
           minWidth: '120px',
+          marginRight: '20px'
         }}
       >
         <InputBase
