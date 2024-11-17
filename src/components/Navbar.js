@@ -81,7 +81,7 @@ const Navbar = () => {
               <img
                 src="/logo.jpg"
                 alt="Aran Makina Logo"
-                style={{ height: "50px", marginLeft: "10px" }}
+                style={{ height: "60px", marginLeft: "10px" }}
               />
             </Link>
 

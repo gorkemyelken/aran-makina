@@ -98,7 +98,7 @@ const AdminPanelSidebar = () => {
           <ListItemIcon>
             <Build sx={{ color: "white" }} />
           </ListItemIcon>
-          <ListItemText primary="Özellikler" sx={{ color: "white" }} />
+          <ListItemText primary="Özellik İsimleri" sx={{ color: "white" }} />
           {openFeatures ? (
             <ExpandLess sx={{ color: "white" }} />
           ) : (
