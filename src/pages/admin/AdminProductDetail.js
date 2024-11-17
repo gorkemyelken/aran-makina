@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Select, MenuItem } from '@mui/material';
-import { fetchProductById, deleteProduct, addProductFeature, fetchFeatureNames } from '../../services/productService';
+import { fetchProductById, addProductFeature, fetchFeatureNames } from '../../services/productService';
 
-const ProductDetailsAdmin = () => {
+const AdminProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [featureNames, setFeatureNames] = useState([]);
@@ -37,18 +37,6 @@ const ProductDetailsAdmin = () => {
     getFeatureNames();
   }, [productId]);
 
-  const handleDelete = async () => {
-    if (window.confirm('Bu ürünü silmek istediğinizden emin misiniz?')) {
-      try {
-        await deleteProduct(productId);
-        alert('Ürün başarıyla silindi.');
-        // Silme işleminden sonra admin ürün listesine yönlendirme yapılabilir.
-      } catch (err) {
-        alert('Ürün silinirken bir hata oluştu.');
-      }
-    }
-  };
-
   const handleDialogOpen = () => {
     setIsDialogOpen(true);
   };
@@ -72,7 +60,6 @@ const ProductDetailsAdmin = () => {
       await addProductFeature(featureData);
       alert('Özellik başarıyla eklendi.');
       setIsDialogOpen(false);
-      // Yeni özellik eklendikten sonra ürün verilerini yeniden yükleyin.
       const updatedProduct = await fetchProductById(productId);
       setProduct(updatedProduct);
     } catch (err) {
@@ -95,23 +82,15 @@ const ProductDetailsAdmin = () => {
           Ürün Detayları
         </Typography>
         <Typography variant="h6">Adı: {product.name}</Typography>
-        <Typography>Kategori: {product.category}</Typography>
+        <Typography>Kategori: {product.category.name}</Typography>
         <Typography>Fiyat: {product.price ? `${product.price} TL` : 'Belirtilmemiş'}</Typography>
         <Typography>Açıklama: {product.description || 'Açıklama mevcut değil.'}</Typography>
 
         <Button
           variant="contained"
-          color="secondary"
-          onClick={handleDelete}
-          sx={{ marginTop: '20px' }}
-        >
-          Ürünü Sil
-        </Button>
-        <Button
-          variant="contained"
           color="primary"
           onClick={handleDialogOpen}
-          sx={{ marginTop: '20px', marginLeft: '10px' }}
+          sx={{ marginTop: '20px' }}
         >
           Yeni Özellik Ekle
         </Button>
@@ -180,4 +159,4 @@ const ProductDetailsAdmin = () => {
   );
 };
 
-export default ProductDetailsAdmin;
+export default AdminProductDetail;

@@ -1,25 +1,12 @@
 import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Container, TextField, Button, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { addProduct } from '../../services/productService';
+import axios from 'axios';
 
-const categories = [
-  "Sabit Askılı Zincirli Vinç",
-  "Manuel Şaryolu Zincirli Vinç",
-  "Monoray Zincirli Vinç",
-  "Mekanik Caraskal",
-  "Yedek Parça",
-  "Şaryo",
-  "Makara",
-  "Kumanda"
-];
-
-const ProductAdd = () => {
+const AdminCategoryAdd = () => {
   const [formData, setFormData] = useState({
     name: '',
-    category: '',
-    description: '',
-    price: ''
+    description: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -36,12 +23,12 @@ const ProductAdd = () => {
     setError('');
 
     try {
-      const response = await addProduct(formData);
-      if (response) {
-        navigate('/admin/products');
+      const response = await axios.post('https://aran-makina-8fce3ead0cbf.herokuapp.com/api/categories/create', formData);
+      if (response.data.success) {
+        navigate('/admin/categories'); // Başarılı olursa kategoriler listesine yönlendirme
       }
     } catch (err) {
-      setError('Ürün eklenirken bir hata oluştu.');
+      setError('Kategori eklenirken bir hata oluştu.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -51,7 +38,7 @@ const ProductAdd = () => {
   return (
     <Container maxWidth="sm" sx={{ marginTop: '30px' }}>
       <Typography variant="h4" gutterBottom>
-        Ürün Ekle
+        Kategori Ekle
       </Typography>
       {error && (
         <Typography variant="body1" color="error" sx={{ marginBottom: '15px' }}>
@@ -60,7 +47,7 @@ const ProductAdd = () => {
       )}
       <Box component="form" onSubmit={handleSubmit}>
         <TextField
-          label="Ürün Adı"
+          label="Kategori Adı"
           name="name"
           fullWidth
           margin="normal"
@@ -68,21 +55,6 @@ const ProductAdd = () => {
           onChange={handleChange}
           required
         />
-        <FormControl fullWidth margin="normal">
-          <InputLabel>Kategori</InputLabel>
-          <Select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
-            {categories.map((category, index) => (
-              <MenuItem key={index} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
         <TextField
           label="Açıklama"
           name="description"
@@ -93,15 +65,6 @@ const ProductAdd = () => {
           value={formData.description}
           onChange={handleChange}
         />
-        <TextField
-          label="Fiyat"
-          name="price"
-          type="number"
-          fullWidth
-          margin="normal"
-          value={formData.price}
-          onChange={handleChange}
-        />
         <Button
           type="submit"
           variant="contained"
@@ -110,11 +73,11 @@ const ProductAdd = () => {
           sx={{ marginTop: '15px' }}
           disabled={loading}
         >
-          {loading ? 'Ekleniyor...' : 'Ürünü Ekle'}
+          {loading ? 'Ekleniyor...' : 'Kategoriyi Ekle'}
         </Button>
       </Box>
     </Container>
   );
 };
 
-export default ProductAdd;
+export default AdminCategoryAdd;

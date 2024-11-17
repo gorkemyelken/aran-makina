@@ -9,17 +9,19 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminProducts from './pages/admin/AdminProducts';
+import AdminProductList from './pages/admin/AdminProductList';
 import AdminUsers from './pages/admin/AdminUsers';
 import About from './pages/About';
 import './App.css';
 import ScrollToTop from './components/ScrollToTop';
 import CategoryBar from './components/CategoryBar';
 import AdminPanel from './pages/admin/AdminPanel';
-import ProductDetailsAdmin from './pages/admin/ProductDetailsAdmin';
-import ProductAdd from './pages/admin/ProductAdd';
+import AdminProductDetail from './pages/admin/AdminProductDetail';
+import AdminProductAdd from './pages/admin/AdminProductAdd';
 import AdminFeatureNameList from './pages/admin/AdminFeatureNameList';
 import AdminFeatureNameAdd from './pages/admin/AdminFeatureNameAdd';
+import AdminCategoryAdd from './pages/admin/AdminCategoryAdd';
+import AdminCategoryList from './pages/admin/AdminCategoryList';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -101,11 +103,13 @@ function AnimatedRoutes() {
             element={<AdminPanel />}
           >
             <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="products" element={<AdminProducts />} />
-            <Route path="products/:productId" element={<ProductDetailsAdmin />} />
-            <Route path="products/add" element={<ProductAdd />} />
+            <Route path="products" element={<AdminProductList />} />
+            <Route path="products/:productId" element={<AdminProductDetail />} />
+            <Route path="products/add" element={<AdminProductAdd />} />
             <Route path="features" element={<AdminFeatureNameList />} />
             <Route path="features/add" element={<AdminFeatureNameAdd />} />
+            <Route path="categories" element={<AdminCategoryList />} />
+            <Route path="categories/add" element={<AdminCategoryAdd />} />
             <Route path="users" element={<AdminUsers />} />
           </Route>
         </Routes>
