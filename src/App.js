@@ -30,7 +30,6 @@ function AnimatedRoutes() {
   return (
     <>
       {!isAdminRoute && <Navbar />}
-      {!isAdminRoute && <CategoryBar />}
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route
@@ -42,6 +41,8 @@ function AnimatedRoutes() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
+                {/* CategoryBar sadece anasayfada gösterilecek */}
+                <CategoryBar />
                 <Home />
               </motion.div>
             }
@@ -98,10 +99,7 @@ function AnimatedRoutes() {
               </motion.div>
             }
           />
-          <Route
-            path="/admin/*"
-            element={<AdminPanel />}
-          >
+          <Route path="/admin/*" element={<AdminPanel />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products" element={<AdminProductList />} />
             <Route path="products/:productId" element={<AdminProductDetail />} />
@@ -132,6 +130,7 @@ function AnimatedRoutes() {
     </>
   );
 }
+
 
 function App() {
   return (

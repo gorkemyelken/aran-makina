@@ -13,6 +13,7 @@ import ProductCard from "../components/ProductCard";
 import { Instagram, WhatsApp, Email, Facebook } from "@mui/icons-material"; // Facebook ikonu eklendi
 import { motion } from "framer-motion";
 import "../styles/Home.css";
+import CategoryBar from "../components/CategoryBar";
 
 const Home = () => {
   const [visibleProducts, setVisibleProducts] = useState([]);
