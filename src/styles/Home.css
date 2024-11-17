@@ -4,6 +4,7 @@
 }
 
 .hero-section {
+  display: block;
   text-align: center;
   padding: 60px 20px;
   background: url('https://celikermakina.com/uploads/blog/caraskal.jpg') no-repeat center center/cover;
@@ -104,5 +105,11 @@
   }
   50% {
     transform: translateY(-55%) scale(1.1);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    display: none;
   }
 }

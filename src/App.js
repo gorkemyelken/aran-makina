@@ -127,7 +127,7 @@ function AnimatedRoutes() {
       className="whatsapp-icon"
       style={{ marginRight: '8px' }}
     />
-    <span style={{ color: 'white', fontWeight: 'bold', fontSize: '18px' }}>
+    <span style={{ color: 'white', fontWeight: 'bold', fontSize: '14px' }}>
       Bize Ulaşın
     </span>
   </a>
