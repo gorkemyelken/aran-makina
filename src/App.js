@@ -114,19 +114,24 @@ function AnimatedRoutes() {
       </AnimatePresence>
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && (
-        <a
-          href="https://wa.me/1234567890"
-          className="whatsapp-float"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="WhatsApp"
-            className="whatsapp-icon"
-          />
-        </a>
-      )}
+  <a
+    href="https://wa.me/1234567890"
+    className="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+  >
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      alt="WhatsApp"
+      className="whatsapp-icon"
+      style={{ marginRight: '8px' }}
+    />
+    <span style={{ color: 'white', fontWeight: 'bold', fontSize: '18px' }}>
+      Bize Ulaşın
+    </span>
+  </a>
+)}
     </>
   );
 }
