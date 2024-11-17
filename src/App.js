@@ -115,7 +115,7 @@ function AnimatedRoutes() {
       {!isAdminRoute && <Footer />}
       {!isAdminRoute && (
   <a
-    href="https://wa.me/1234567890"
+    href="https://wa.me/905436256412"
     className="whatsapp-float"
     target="_blank"
     rel="noopener noreferrer"
