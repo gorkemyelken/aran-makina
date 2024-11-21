@@ -1,8 +1,20 @@
 import React from 'react';
 import { Container, Typography, Box, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Footer.css';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleSecretAccess = () => {
+    const password = prompt('Admin Şifresi:');
+    if (password === 'akif2024caraskal') {
+      navigate('/admin');
+    } else {
+      alert('Yanlış şifre!');
+    }
+  };
+
   return (
     <Box className="footer-container">
       <Container maxWidth="lg">
@@ -20,6 +32,11 @@ const Footer = () => {
             İletişim
           </Link>
         </Box>
+        {/* Gizli tıklama alanı - sadece masaüstünde */}
+        <div
+          className="secret-access"
+          onClick={handleSecretAccess}
+        ></div>
       </Container>
     </Box>
   );

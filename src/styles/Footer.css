@@ -26,3 +26,20 @@
 .footer-link:hover {
   color: #cce0ff;
 }
+
+.secret-access {
+  position: inherit;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Mobil cihazlarda gizli alanı gizle */
+@media (max-width: 768px) {
+  .secret-access {
+    display: none;
+  }
+}

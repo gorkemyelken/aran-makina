@@ -42,7 +42,6 @@ const Navbar = () => {
     { name: "HAKKIMIZDA", path: "/hakkimizda" },
     { name: "ÜRÜNLER", path: "/urunler" },
     { name: "İLETİŞİM", path: "/iletisim" },
-    { name: "ADMİN PANELİ", path: "/admin/dashboard" },
   ];
 
   // adminPages'i tanımlayın

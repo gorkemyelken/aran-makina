@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Select, MenuItem } from '@mui/material';
+import { Container, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Select, MenuItem, Grid } from '@mui/material';
 import { fetchProductById, addProductFeature, fetchFeatureNames } from '../../services/productService';
 
 const AdminProductDetail = () => {
@@ -11,6 +11,7 @@ const AdminProductDetail = () => {
   const [error, setError] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newFeature, setNewFeature] = useState({ featureNameId: '', value: '' });
+  const [file, setFile] = useState(null); // State for photo file
 
   useEffect(() => {
     const getProduct = async () => {
@@ -67,6 +68,38 @@ const AdminProductDetail = () => {
     }
   };
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUploadPhoto = async () => {
+    if (!file) {
+      alert('Lütfen bir fotoğraf seçin.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('productId', productId);
+
+    try {
+      const response = await fetch('https://aran-makina-8fce3ead0cbf.herokuapp.com/api/files/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert('Fotoğraf başarıyla yüklendi.');
+        const updatedProduct = await fetchProductById(productId);
+        setProduct(updatedProduct);
+      } else {
+        alert('Fotoğraf yüklenirken bir hata oluştu.');
+      }
+    } catch (err) {
+      alert('Fotoğraf yüklenirken bir hata oluştu.');
+    }
+  };
+
   if (isLoading) {
     return <Typography>Yükleniyor...</Typography>;
   }
@@ -85,6 +118,26 @@ const AdminProductDetail = () => {
         <Typography>Kategori: {product.category.name}</Typography>
         <Typography>Fiyat: {product.price ? `${product.price} TL` : 'Belirtilmemiş'}</Typography>
         <Typography>Açıklama: {product.description || 'Açıklama mevcut değil.'}</Typography>
+
+        {/* Fotoğraf Yükleme Butonu */}
+        <div>
+          <input type="file" onChange={handleFileChange} />
+          <Button variant="contained" color="primary" onClick={handleUploadPhoto} sx={{ marginTop: '20px' }}>
+            Fotoğraf Yükle
+          </Button>
+        </div>
+
+        {/* Ürün Fotoğrafları */}
+        <Typography variant="h5" sx={{ marginTop: '30px' }}>
+          Ürün Fotoğrafları
+        </Typography>
+        <Grid container spacing={2} sx={{ marginTop: '20px' }}>
+          {product.photos.map((photo, index) => (
+            <Grid item key={index} xs={4}>
+              <img src={photo.url} alt={`Ürün Fotoğrafı ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
+            </Grid>
+          ))}
+        </Grid>
 
         <Button
           variant="contained"

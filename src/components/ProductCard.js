@@ -21,8 +21,7 @@ const ProductCard = ({ product }) => {
       <CardMedia
         component="img"
         alt={product.name}
-        height="200"
-        image="https://via.placeholder.com/400x200" // Ürün resmi URL'si burada ayarlanabilir
+        image={product.photos[0].url} // Ürün resmi URL'si burada ayarlanabilir
       />
       <CardContent>
         <Typography variant="h5" component="div" className="product-title">
