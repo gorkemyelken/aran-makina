@@ -1,6 +1,6 @@
 .product-card {
   max-width: 345px;
-  height: 350px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,10 +17,10 @@
 }
 
 .product-title {
-  font-family: 'Poppins', sans-serif !important; /* Yazı tipi */
+  font-family: 'Poppins', sans-serif !important;
   font-weight: bold;
   text-align: center;
-  color: #000 !important; /* Başlık rengi siyah */
+  color: #000;
 }
 
 .card-actions {
@@ -32,7 +32,7 @@
 
 .details-button {
   color: #004080;
-  font-family: 'Poppins', sans-serif !important; /* Yazı tipi */
+  font-family: 'Poppins', sans-serif !important;
   border: 1px solid #004080;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -43,10 +43,17 @@
 }
 
 .whatsapp-button {
-  color: #25D366 !important; /* WhatsApp yeşil rengi */
+  color: #25D366 !important;
   transition: transform 0.3s;
 }
 
 .whatsapp-button:hover {
   transform: scale(1.1);
+}
+
+/* Resimlerin düzgün şekilde görünmesini sağlamak için */
+.product-card img {
+  width: 100%;
+  height: 300px !important; /* Yüksekliği sabitleyin, ihtiyacınıza göre ayar yapın */
+  object-fit: contain !important; /* Resmin kırpılmasını önler, ancak bazı kısımlarını kaybedebilir */
 }

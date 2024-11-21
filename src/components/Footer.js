@@ -32,12 +32,13 @@ const Footer = () => {
             İletişim
           </Link>
         </Box>
-        {/* Gizli tıklama alanı - sadece masaüstünde */}
-        <div
-          className="secret-access"
-          onClick={handleSecretAccess}
-        ></div>
       </Container>
+
+      {/* Gizli tıklama alanı - en altta ve sola yerleştirildi */}
+      <div
+        className="secret-access"
+        onClick={handleSecretAccess}
+      ></div>
     </Box>
   );
 };

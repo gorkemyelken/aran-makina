@@ -18,13 +18,15 @@ const ProductCard = ({ product }) => {
 
   return (
     <Card className="product-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
-      <CardMedia
-        component="img"
-        alt={product.name}
-        image={product.photos[0].url} // Ürün resmi URL'si burada ayarlanabilir
-      />
+<CardMedia
+  component="img"
+  alt={product.name}
+  image={product.photos && product.photos[0] ? product.photos[0].url : '/default-image.jpg'}
+ // Resim yüksekliğini ayarlayabilirsiniz
+  style={{ objectFit: 'contain' }} // Resim kutuya sığacak şekilde ayarlanacak
+/>
       <CardContent>
-        <Typography variant="h5" component="div" className="product-title">
+        <Typography variant="h6" component="div" className="product-title">
           {product.name}
         </Typography>
       </CardContent>
