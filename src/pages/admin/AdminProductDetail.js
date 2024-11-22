@@ -118,6 +118,7 @@ const AdminProductDetail = () => {
         <Typography>Kategori: {product.category.name}</Typography>
         <Typography>Fiyat: {product.price ? `${product.price} TL` : 'Belirtilmemiş'}</Typography>
         <Typography>Açıklama: {product.description || 'Açıklama mevcut değil.'}</Typography>
+        <Typography>Öncelik: {product.priority || 'Açıklama mevcut değil.'}</Typography>
 
         {/* Fotoğraf Yükleme Butonu */}
         <div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
-import { Instagram, WhatsApp, Email, Facebook } from "@mui/icons-material"; // Facebook ikonu eklendi
+import { Instagram, WhatsApp, Email, Facebook } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import "../styles/Home.css";
 
@@ -29,12 +29,59 @@ const Home = () => {
   return (
     <Box className="home-container">
       <Container className="hero-section">
-        <Typography variant="h2" className="animated-title">
-          Aran Makina'ya Hoş Geldiniz!
-        </Typography>
-        <Typography variant="h5" className="animated-subtitle">
-          Güçlü ve güvenilir ekipmanlarımızla işinizi kolaylaştırın.
-        </Typography>
+        {/* Sol Taraf: Resim */}
+        <Box className="hero-image" />
+
+        {/* Sağ Taraf: Yazılar */}
+        <Box className="hero-text">
+          <Typography variant="h4" className="animated-subtitle">
+            Güçlü ve güvenilir ekipmanlarımızla işinizi kolaylaştırın.
+          </Typography>
+          <motion.ul
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+          >
+            <motion.li
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.5 }}
+            >
+              <Typography variant="h5" className="animated-subtitle">
+                Ürünlerimiz uzun ömürlü ve dayanıklıdır.
+              </Typography>
+            </motion.li>
+            <motion.li
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5, duration: 0.5 }}
+            >
+              <Typography variant="h5" className="animated-subtitle">
+                Yüksek kapasite ile sorunsuz çalışma sağlar.
+              </Typography>
+            </motion.li>
+            <motion.li
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2, duration: 0.5 }}
+            >
+              <Typography variant="h5" className="animated-subtitle">
+                {" "}
+                Çeşitli endüstriyel alanlarda kullanılabilir.
+              </Typography>
+            </motion.li>
+            <motion.li
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.5, duration: 0.5 }}
+            >
+              <Typography variant="h5" className="animated-subtitle">
+                {" "}
+                Farklı ihtiyaçlara uygun çözümler sunar.
+              </Typography>
+            </motion.li>
+          </motion.ul>
+        </Box>
       </Container>
 
       <Container className="product-section">
