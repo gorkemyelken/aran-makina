@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { fetchProductById } from "../services/productService";
 import {
   Container,
   Typography,
+  Grid,
+  Box,
+  CardMedia,
+  Button,
   List,
   ListItem,
   ListItemText,
   CircularProgress,
-  Grid,
-  CardMedia,
-  Button,
-  Box,
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   Breadcrumbs,
 } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -26,15 +26,19 @@ import "../styles/ProductPage.css";
 
 const ProductPage = () => {
   const { productId } = useParams();
+  const location = useLocation();
   const [product, setProduct] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // ID'yi state'ten alıyoruz
+  const { productId: productIdFromState } = location.state || {};
+
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const productData = await fetchProductById(productId);
+        const productData = await fetchProductById(productIdFromState || productId);
         setProduct(productData);
         if (productData.photos && productData.photos.length > 0) {
           setSelectedPhoto(productData.photos[0].url);
@@ -46,17 +50,12 @@ const ProductPage = () => {
       }
     };
 
-    if (productId) {
-      getProduct();
-    }
-  }, [productId]);
+    getProduct();
+  }, [productId, productIdFromState]);
 
   const handleWhatsAppClick = () => {
     const message = `Merhaba, ${product.name} hakkında bilgi almak istiyorum.`;
-    window.open(
-      `https://wa.me/1234567890?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+    window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handlePhotoClick = (url) => {
@@ -65,9 +64,7 @@ const ProductPage = () => {
 
   if (loading) {
     return (
-      <Container
-        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
-      >
+      <Container style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
         <CircularProgress />
       </Container>
     );
@@ -84,19 +81,35 @@ const ProductPage = () => {
   return (
     product && (
       <Container className="product-container">
-        {/* Breadcrumbs Bölümü */}
-        <Breadcrumbs aria-label="breadcrumb" sx={{ marginBottom: "20px" }}>
-          <Link to="/" style={{ textDecoration: "none", color: "#014DAD" }}>
-            Anasayfa
-          </Link>
-          <Link
-            to="/urunler"
-            style={{ textDecoration: "none", color: "#014DAD" }}
-          >
-            Ürünler
-          </Link>
-          <Typography color="text.primary">{product.name}</Typography>
-        </Breadcrumbs>
+        <Breadcrumbs aria-label="breadcrumb" sx={{ marginBottom: "20px", fontSize: "1.1rem" }}>
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+            color: "#014DAD",
+            fontWeight: "500",
+            fontSize: "1rem",
+            transition: "color 0.3s ease",
+          }}
+        >
+          Anasayfa
+        </Link>
+        <Link
+          to="/urunler"
+          style={{
+            textDecoration: "none",
+            color: "#014DAD",
+            fontWeight: "500",
+            fontSize: "1rem",
+            transition: "color 0.3s ease",
+          }}
+        >
+          Ürünler
+        </Link>
+        <Typography color="text.primary" style={{ fontWeight: "500" }}>
+          {product.name}
+        </Typography>
+      </Breadcrumbs>
 
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>

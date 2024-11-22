@@ -103,7 +103,7 @@ function AnimatedRoutes() {
           <Route path="/admin/*" element={<AdminPanel />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products" element={<AdminProductList />} />
-            <Route path="products/:productId" element={<AdminProductDetail />} />
+            <Route path="products/:productName" element={<AdminProductDetail />} />
             <Route path="products/add" element={<AdminProductAdd />} />
             <Route path="features" element={<AdminFeatureNameList />} />
             <Route path="features/add" element={<AdminFeatureNameAdd />} />

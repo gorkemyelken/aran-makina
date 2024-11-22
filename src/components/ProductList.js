@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Container, Typography, Grid, Box, Chip, Divider } from '@mui/material';
-import { fetchProducts } from '../services/productService';
-import { fetchCategories } from '../services/categoryService';
-import ProductCard from '../components/ProductCard';
-import { motion } from 'framer-motion';
-import '../styles/ProductList.css';
+import React, { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
+import {
+  Container,
+  Typography,
+  Grid,
+  Box,
+  Chip,
+  Divider,
+  Breadcrumbs,
+} from "@mui/material";
+import { fetchProducts } from "../services/productService";
+import { fetchCategories } from "../services/categoryService";
+import ProductCard from "../components/ProductCard";
+import { motion } from "framer-motion";
+import "../styles/ProductList.css";
 
 const ProductList = () => {
   const location = useLocation();
@@ -23,7 +31,8 @@ const ProductList = () => {
 
       if (selectedCategory !== null) {
         const filtered = productsData.filter(
-          (product) => product.category && product.category.id === selectedCategory
+          (product) =>
+            product.category && product.category.id === selectedCategory
         );
         setFilteredProducts(filtered);
       } else {
@@ -36,7 +45,7 @@ const ProductList = () => {
         const categoriesData = await fetchCategories();
         setCategories(categoriesData);
       } catch (err) {
-        console.error('Kategoriler yüklenirken bir hata oluştu:', err);
+        console.error("Kategoriler yüklenirken bir hata oluştu:", err);
       }
     };
 
@@ -58,6 +67,37 @@ const ProductList = () => {
 
   return (
     <Container className="products-container">
+      {/* Modern Breadcrumbs Bölümü */}
+      <Breadcrumbs aria-label="breadcrumb" sx={{ marginBottom: "20px", fontSize: "1.1rem" }}>
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+            color: "#014DAD",
+            fontWeight: "500",
+            fontSize: "1rem",
+            transition: "color 0.3s ease",
+          }}
+        >
+          Anasayfa
+        </Link>
+        <Link
+          to="/urunler"
+          style={{
+            textDecoration: "none",
+            color: "#014DAD",
+            fontWeight: "500",
+            fontSize: "1rem",
+            transition: "color 0.3s ease",
+          }}
+        >
+          Ürünler
+        </Link>
+        <Typography color="text.primary" style={{ fontWeight: "500" }}>
+          {selectedCategory ? categories.find(cat => cat.id === selectedCategory)?.name : "Tüm Ürünler"}
+        </Typography>
+      </Breadcrumbs>
+
       <Typography variant="h5" className="products-title">
         Ürünlerimiz
       </Typography>
@@ -66,12 +106,12 @@ const ProductList = () => {
       {/* Kategori Çubuğu */}
       <Box
         sx={{
-          display: 'flex',
-          overflowX: 'auto',
-          padding: '10px 0',
-          marginBottom: '20px',
-          '&::-webkit-scrollbar': {
-            display: 'none',
+          display: "flex",
+          overflowX: "auto",
+          padding: "10px 0",
+          marginBottom: "20px",
+          "&::-webkit-scrollbar": {
+            display: "none",
           },
         }}
       >
@@ -79,14 +119,16 @@ const ProductList = () => {
           label="Tüm Kategoriler"
           onClick={() => handleCategoryChange(null)}
           sx={{
-            margin: '0 5px',
-            backgroundColor: selectedCategory === null ? '#014DAD' : '#f0f0f0',
-            color: selectedCategory === null ? '#ffffff' : '#000000',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor: '#013f8a',
-              color: '#ffffff',
+            margin: "0 5px",
+            backgroundColor: selectedCategory === null ? "#014DAD" : "#f0f0f0",
+            color: selectedCategory === null ? "#ffffff" : "#000000",
+            cursor: "pointer",
+            "&:hover": {
+              backgroundColor: "#013f8a",
+              color: "#ffffff",
             },
+            fontSize: "0.9rem",
+            fontWeight: "300",
           }}
         />
         {categories.map((category) => (
@@ -95,14 +137,17 @@ const ProductList = () => {
             label={category.name}
             onClick={() => handleCategoryChange(category.id)}
             sx={{
-              margin: '0 5px',
-              backgroundColor: selectedCategory === category.id ? '#014DAD' : '#f0f0f0',
-              color: selectedCategory === category.id ? '#ffffff' : '#000000',
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor: '#013f8a',
-                color: '#ffffff',
+              margin: "0 5px",
+              backgroundColor:
+                selectedCategory === category.id ? "#014DAD" : "#f0f0f0",
+              color: selectedCategory === category.id ? "#ffffff" : "#000000",
+              cursor: "pointer",
+              "&:hover": {
+                backgroundColor: "#013f8a",
+                color: "#ffffff",
               },
+              fontSize: "0.9rem",
+              fontWeight: "300",
             }}
           />
         ))}
@@ -123,7 +168,9 @@ const ProductList = () => {
             </Grid>
           ))
         ) : (
-          <Typography sx={{ textAlign: 'center', marginTop: '20px', width: '100%' }}>
+          <Typography
+            sx={{ textAlign: "center", marginTop: "20px", width: "100%" }}
+          >
             Bu kategoride ürün bulunamadı.
           </Typography>
         )}
