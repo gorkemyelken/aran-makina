@@ -11,7 +11,7 @@
   padding: 60px 20px;
   border-radius: 15px;
   margin-bottom: 50px;
-  background-color: #014DAD;
+  background-color: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   height: 350px; /* Aynı boyutta olacak şekilde */
 }
@@ -28,7 +28,7 @@
 .hero-text {
   width: 50%;
   padding: 20px;
-  color: white; /* Yazı rengini değiştirdik */
+  color: #014DAD; /* Yazı rengini değiştirdik */
   animation: fadeInRight 1s ease-out;
 }
 
