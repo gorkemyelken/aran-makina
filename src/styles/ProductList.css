@@ -1,3 +1,4 @@
+/* Genel Stil */
 .products-container {
   background-color: #f9f9f9;
   border-radius: 15px;
@@ -5,6 +6,7 @@
   padding: 40px 20px;
   position: relative;
   margin-bottom: 100px;
+  min-height: 100vh;
 }
 
 .products-title {
@@ -28,4 +30,50 @@
 
 .MuiTextField-root {
   margin: auto;
+}
+
+/* Kategoriler için düzenlemeler */
+.product-category-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Kategoriler taşarsa alt sıraya geçer */
+  gap: 8px; /* Kategoriler arasında boşluk */
+  margin-bottom: 20px;
+}
+
+.product-category-chip {
+  background-color: #f0f0f0;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.product-category-chip.selected {
+  background-color: #014DAD;
+  color: #ffffff;
+}
+
+.product-category-chip:hover {
+  background-color: #013f8a;
+  color: #ffffff;
+}
+
+/* Mobil için kategori dropdown */
+@media (max-width: 768px) {
+  .product-category-container {
+    display: none; /* Mobilde chip'leri gizleyeceğiz */
+  }
+
+  .mobile-category-select {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .MuiFormControl-root {
+    width: 100%;
+  }
 }

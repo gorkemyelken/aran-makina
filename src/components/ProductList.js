@@ -8,6 +8,10 @@ import {
   Chip,
   Divider,
   Breadcrumbs,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import { fetchProducts } from "../services/productService";
 import { fetchCategories } from "../services/categoryService";
@@ -81,18 +85,9 @@ const ProductList = () => {
         >
           Anasayfa
         </Link>
-        <Link
-          to="/urunler"
-          style={{
-            textDecoration: "none",
-            color: "#014DAD",
-            fontWeight: "500",
-            fontSize: "1rem",
-            transition: "color 0.3s ease",
-          }}
-        >
+        <Typography color="text.primary" style={{ fontWeight: "500" }}>
           Ürünler
-        </Link>
+        </Typography>
         <Typography color="text.primary" style={{ fontWeight: "500" }}>
           {selectedCategory ? categories.find(cat => cat.id === selectedCategory)?.name : "Tüm Ürünler"}
         </Typography>
@@ -103,55 +98,38 @@ const ProductList = () => {
       </Typography>
       <Divider className="divider" />
 
-      {/* Kategori Çubuğu */}
-      <Box
-        sx={{
-          display: "flex",
-          overflowX: "auto",
-          padding: "10px 0",
-          marginBottom: "20px",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        }}
-      >
+      {/* Kategori Çubuğu (Mobilde Dropdown Menüsü) */}
+      <Box className="product-category-container">
         <Chip
           label="Tüm Kategoriler"
           onClick={() => handleCategoryChange(null)}
-          sx={{
-            margin: "0 5px",
-            backgroundColor: selectedCategory === null ? "#014DAD" : "#f0f0f0",
-            color: selectedCategory === null ? "#ffffff" : "#000000",
-            cursor: "pointer",
-            "&:hover": {
-              backgroundColor: "#013f8a",
-              color: "#ffffff",
-            },
-            fontSize: "0.9rem",
-            fontWeight: "300",
-          }}
+          className={`product-category-chip ${selectedCategory === null ? "selected" : ""}`}
         />
         {categories.map((category) => (
           <Chip
             key={category.id}
             label={category.name}
             onClick={() => handleCategoryChange(category.id)}
-            sx={{
-              margin: "0 5px",
-              backgroundColor:
-                selectedCategory === category.id ? "#014DAD" : "#f0f0f0",
-              color: selectedCategory === category.id ? "#ffffff" : "#000000",
-              cursor: "pointer",
-              "&:hover": {
-                backgroundColor: "#013f8a",
-                color: "#ffffff",
-              },
-              fontSize: "0.9rem",
-              fontWeight: "300",
-            }}
+            className={`product-category-chip ${selectedCategory === category.id ? "selected" : ""}`}
           />
         ))}
       </Box>
+
+      {/* Mobilde kategori seçimi için açılır menü */}
+      <FormControl fullWidth className="mobile-category-select" sx={{ display: { xs: "block", sm: "none" } }}>
+        <InputLabel>Kategori Seç</InputLabel>
+        <Select
+          value={selectedCategory || ""}
+          onChange={(e) => handleCategoryChange(e.target.value)}
+          label="Kategori Seç"
+        >
+          {categories.map((category) => (
+            <MenuItem key={category.id} value={category.id}>
+              {category.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
       {/* Ürünler Listesi */}
       <Grid container spacing={4}>
@@ -168,9 +146,7 @@ const ProductList = () => {
             </Grid>
           ))
         ) : (
-          <Typography
-            sx={{ textAlign: "center", marginTop: "20px", width: "100%" }}
-          >
+          <Typography sx={{ textAlign: "center", marginTop: "20px", width: "100%" }}>
             Bu kategoride ürün bulunamadı.
           </Typography>
         )}
