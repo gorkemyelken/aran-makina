@@ -1,17 +1,39 @@
 .whatsapp-float {
   position: fixed;
-  top: 50%; /* Dikey olarak ortada */
-  right: 10px;
-  transform: translateY(-50%);
+  bottom: 20px; /* Ekranın alt kısmına daha yakın */
+  right: 20px; /* Sağ tarafa biraz daha yakın */
   z-index: 1000;
   animation: bounce 2s infinite;
   background-color: #25D366;
-  border-radius: 50%;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 50%; /* Yuvarlak ikon */
+  padding: 15px; /* Daha büyük padding, daha büyük alan */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Daha belirgin bir gölge */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* Tıklanabilir işaret */
 }
 
 .whatsapp-icon {
-  width: 40px;
-  height: 40px;
+  width: 50px; /* İkonun boyutunu büyütüyoruz */
+  height: 50px; /* İkonun boyutunu büyütüyoruz */
+  object-fit: contain; /* Görüntüyü düzgün yerleştir */
+}
+
+.whatsapp-float:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Hover durumunda gölgeyi artırıyoruz */
+  transform: scale(1.1); /* Hover durumunda biraz büyüme animasyonu */
+}
+
+/* Bouncing animasyonu */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
