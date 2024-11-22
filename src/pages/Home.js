@@ -13,7 +13,6 @@ import ProductCard from "../components/ProductCard";
 import { Instagram, WhatsApp, Email, Facebook } from "@mui/icons-material"; // Facebook ikonu eklendi
 import { motion } from "framer-motion";
 import "../styles/Home.css";
-import CategoryBar from "../components/CategoryBar";
 
 const Home = () => {
   const [visibleProducts, setVisibleProducts] = useState([]);
@@ -64,23 +63,33 @@ const Home = () => {
           </Box>
         )}
 
-<Box className="social-icons">
-      <IconButton href="https://facebook.com" target="_blank" aria-label="Facebook">
-          <Facebook style={{ color: '#3b5998' }} />
-        </IconButton>
-        <IconButton href="https://www.instagram.com/aranmakine/" target="_blank" aria-label="Instagram">
-          <Instagram style={{ color: '#C13584' }} />
-        </IconButton>
-        <IconButton href="https://wa.me/905436256412" target="_blank" aria-label="WhatsApp">
-          <WhatsApp style={{ color: '#25D366' }} />
-        </IconButton>
-        <IconButton href="mailto:bilgi@arancaraskal.com" aria-label="Email">
-          <Email style={{ color: '#014DAD' }} />
-        </IconButton>
-      </Box>
+        <Box className="social-icons">
+          <IconButton
+            href="https://facebook.com"
+            target="_blank"
+            aria-label="Facebook"
+          >
+            <Facebook style={{ color: "#3b5998" }} />
+          </IconButton>
+          <IconButton
+            href="https://www.instagram.com/aranmakine/"
+            target="_blank"
+            aria-label="Instagram"
+          >
+            <Instagram style={{ color: "#C13584" }} />
+          </IconButton>
+          <IconButton
+            href="https://wa.me/905436256412"
+            target="_blank"
+            aria-label="WhatsApp"
+          >
+            <WhatsApp style={{ color: "#25D366" }} />
+          </IconButton>
+          <IconButton href="mailto:bilgi@arancaraskal.com" aria-label="Email">
+            <Email style={{ color: "#014DAD" }} />
+          </IconButton>
+        </Box>
       </Container>
-
-
     </Box>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { fetchProductById } from "../services/productService";
 import {
   Container,
@@ -19,6 +19,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Breadcrumbs,
 } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import "../styles/ProductPage.css";
@@ -83,6 +84,20 @@ const ProductPage = () => {
   return (
     product && (
       <Container className="product-container">
+        {/* Breadcrumbs Bölümü */}
+        <Breadcrumbs aria-label="breadcrumb" sx={{ marginBottom: "20px" }}>
+          <Link to="/" style={{ textDecoration: "none", color: "#014DAD" }}>
+            Anasayfa
+          </Link>
+          <Link
+            to="/urunler"
+            style={{ textDecoration: "none", color: "#014DAD" }}
+          >
+            Ürünler
+          </Link>
+          <Typography color="text.primary">{product.name}</Typography>
+        </Breadcrumbs>
+
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             {/* Seçilen fotoğrafı büyük olarak göster */}
