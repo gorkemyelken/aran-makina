@@ -4,7 +4,9 @@
   padding: 20px 0;
   text-align: center;
   margin-top: 50px;
-  position: relative; /* Gizli alanı yerleştirmek için relative yapıyoruz */
+  position: fixed;
+  bottom: 0; 
+  width: 100%;
 }
 
 .footer-text {
