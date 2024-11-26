@@ -46,6 +46,9 @@ const AdminCategoryAdd = () => {
         </Typography>
       )}
       <Box component="form" onSubmit={handleSubmit}>
+      <Typography style={{ color: "red" }}>
+          Kategori isminin tüm harfleri büyük eklenmelidir!!!
+        </Typography>
         <TextField
           label="Kategori Adı"
           name="name"

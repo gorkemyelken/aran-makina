@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
 
   const handleWhatsAppClick = () => {
     const message = `Merhaba, ${product.name} hakkında bilgi almak istiyorum.`;
-    window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/905436256412?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handleDetailsClick = (e) => {

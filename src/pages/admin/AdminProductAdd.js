@@ -1,20 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Container, TextField, Button, Typography, Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { addProduct } from '../../services/productService';
-import { fetchCategories } from '../../services/categoryService';
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { addProduct } from "../../services/productService";
+import { fetchCategories } from "../../services/categoryService";
 
 const AdminProductAdd = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    category: { id: '', name: '' },
-    description: '',
-    price: '',
-    priority: 1 // Priority alanını başlatıyoruz
+    name: "",
+    category: { id: "", name: "" },
+    description: "",
+    price: "",
+    priority: 1, // Priority alanını başlatıyoruz
   });
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,8 +33,8 @@ const AdminProductAdd = () => {
         const data = await fetchCategories();
         setCategories(data);
       } catch (err) {
-        console.error('Kategoriler yüklenirken bir hata oluştu:', err);
-        setError('Kategoriler yüklenemedi.');
+        console.error("Kategoriler yüklenirken bir hata oluştu:", err);
+        setError("Kategoriler yüklenemedi.");
       }
     };
 
@@ -37,22 +47,24 @@ const AdminProductAdd = () => {
   };
 
   const handleCategoryChange = (e) => {
-    const selectedCategory = categories.find(category => category.id === e.target.value);
+    const selectedCategory = categories.find(
+      (category) => category.id === e.target.value
+    );
     setFormData({ ...formData, category: selectedCategory });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
       const response = await addProduct(formData);
       if (response) {
-        navigate('/admin/products');
+        navigate("/admin/products");
       }
     } catch (err) {
-      setError('Ürün eklenirken bir hata oluştu.');
+      setError("Ürün eklenirken bir hata oluştu.");
       console.error(err);
     } finally {
       setLoading(false);
@@ -60,12 +72,12 @@ const AdminProductAdd = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ marginTop: '30px' }}>
+    <Container maxWidth="sm" sx={{ marginTop: "30px" }}>
       <Typography variant="h4" gutterBottom>
         Ürün Ekle
       </Typography>
       {error && (
-        <Typography variant="body1" color="error" sx={{ marginBottom: '15px' }}>
+        <Typography variant="body1" color="error" sx={{ marginBottom: "15px" }}>
           {error}
         </Typography>
       )}
@@ -114,9 +126,9 @@ const AdminProductAdd = () => {
           onChange={handleChange}
         />
 
-<Typography style={{ color: "red" }}>
-  Öncelik ne kadar yüksek olursa ürün o kadar ilk sıralarda olur!!!
-</Typography>
+        <Typography style={{ color: "red" }}>
+          Öncelik ne kadar yüksek olursa ürün o kadar ilk sıralarda olur!!!
+        </Typography>
         <FormControl fullWidth margin="normal">
           <InputLabel>Öncelik</InputLabel>
           <Select
@@ -125,11 +137,13 @@ const AdminProductAdd = () => {
             onChange={handleChange}
             required
           >
-            {Array.from({ length: 10 }, (_, index) => index + 1).map((priorityValue) => (
-              <MenuItem key={priorityValue} value={priorityValue}>
-                {priorityValue}
-              </MenuItem>
-            ))}
+            {Array.from({ length: 10 }, (_, index) => index + 1).map(
+              (priorityValue) => (
+                <MenuItem key={priorityValue} value={priorityValue}>
+                  {priorityValue}
+                </MenuItem>
+              )
+            )}
           </Select>
         </FormControl>
         <Button
@@ -137,10 +151,10 @@ const AdminProductAdd = () => {
           variant="contained"
           color="primary"
           fullWidth
-          sx={{ marginTop: '15px' }}
+          sx={{ marginTop: "15px" }}
           disabled={loading}
         >
-          {loading ? 'Ekleniyor...' : 'Ürünü Ekle'}
+          {loading ? "Ekleniyor..." : "Ürünü Ekle"}
         </Button>
       </Box>
     </Container>

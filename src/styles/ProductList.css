@@ -34,6 +34,7 @@
 
 /* Kategoriler için düzenlemeler */
 .product-category-container {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap; /* Kategoriler taşarsa alt sıraya geçer */
