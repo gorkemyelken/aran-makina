@@ -28,9 +28,6 @@ const Footer = () => {
           <Link href="/terms" color="inherit" className="footer-link">
             Kullanım Şartları
           </Link>
-          <Link href="/iletisim" color="inherit" className="footer-link">
-            İletişim
-          </Link>
         </Box>
       </Container>
 
