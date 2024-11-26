@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, List, ListItem, ListItemText, Button, CircularProgress, Box } from '@mui/material';
-import { fetchCategories, deleteCategory } from '../../services/categoryService';
+import {
+  Container,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+  CircularProgress,
+  Box,
+  IconButton,
+} from '@mui/material';
+import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
+import { fetchCategories, deleteCategory, reorderCategories } from '../../services/categoryService';
 
 const AdminCategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -27,12 +39,35 @@ const AdminCategoryList = () => {
     if (window.confirm('Bu kategoriyi silmek istediğinizden emin misiniz?')) {
       try {
         await deleteCategory(id);
-        setCategories(categories.filter(category => category.id !== id));
+        setCategories(categories.filter((category) => category.id !== id));
         alert('Kategori başarıyla silindi.');
       } catch (err) {
         console.error('Kategori silinirken bir hata oluştu:', err);
         setError('Kategori silinemedi.');
       }
+    }
+  };
+
+  const moveCategory = (index, direction) => {
+    const newCategories = [...categories];
+    const targetIndex = index + direction;
+
+    if (targetIndex >= 0 && targetIndex < newCategories.length) {
+      [newCategories[index], newCategories[targetIndex]] = [newCategories[targetIndex], newCategories[index]];
+      setCategories(newCategories);
+      setHasChanges(true);
+    }
+  };
+
+  const handleSaveOrder = async () => {
+    const orderedCategoryIds = categories.map((category) => category.id);
+    try {
+      await reorderCategories(orderedCategoryIds);
+      alert('Sıralama başarıyla kaydedildi.');
+      setHasChanges(false);
+    } catch (error) {
+      console.error('Sıralama kaydedilirken hata oluştu:', error);
+      setError('Sıralama kaydedilemedi.');
     }
   };
 
@@ -50,23 +85,56 @@ const AdminCategoryList = () => {
           {error}
         </Typography>
       ) : (
-        <List>
-          {categories.map((category) => (
-            <ListItem key={category.id} divider>
-              <ListItemText
-                primary={category.name}
-                secondary={category.description ? category.description : 'Açıklama yok'}
-              />
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={() => handleDelete(category.id)}
-              >
-                SİL
-              </Button>
-            </ListItem>
-          ))}
-        </List>
+        <>
+          <List>
+            {categories.map((category, index) => (
+              <ListItem key={category.id} divider>
+                <Box display="flex" alignItems="center" width="100%">
+                  <Box>
+                    <IconButton
+                      onClick={() => moveCategory(index, -1)}
+                      disabled={index === 0}
+                      color="primary"
+                    >
+                      <ArrowUpward />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => moveCategory(index, 1)}
+                      disabled={index === categories.length - 1}
+                      color="primary"
+                    >
+                      <ArrowDownward />
+                    </IconButton>
+                  </Box>
+                  <Box flexGrow={1} ml={2}>
+                    <ListItemText
+                      primary={category.name}
+                      secondary={category.description ? category.description : 'Açıklama yok'}
+                    />
+                  </Box>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => handleDelete(category.id)}
+                  >
+                    SİL
+                  </Button>
+                </Box>
+              </ListItem>
+            ))}
+          </List>
+
+          {hasChanges && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSaveOrder}
+              sx={{ marginTop: '20px' }}
+            >
+              Sıralamayı Kaydet
+            </Button>
+          )}
+        </>
       )}
     </Container>
   );

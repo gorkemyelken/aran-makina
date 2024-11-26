@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
@@ -12,6 +12,7 @@ import {
   Button,
   IconButton,
 } from '@mui/material';
+import { Link } from 'react-router-dom'; // Link bileşeni eklendi
 import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
 import { fetchProducts, deleteProduct, reorderProducts } from '../../services/productService';
 
@@ -117,6 +118,8 @@ const AdminProductList = () => {
                   <Button
                     variant="outlined"
                     color="primary"
+                    component={Link} // Link bileşeni kullanıldı
+                    to={`/admin/products/${product.productId}`} // Yönlendirme URL'si
                     sx={{ marginRight: '10px' }}
                   >
                     Görüntüle

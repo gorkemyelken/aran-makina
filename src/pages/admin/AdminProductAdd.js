@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   TextField,
@@ -20,7 +20,6 @@ const AdminProductAdd = () => {
     category: { id: "", name: "" },
     description: "",
     price: "",
-    priority: 1, // Priority alanını başlatıyoruz
   });
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -125,27 +124,6 @@ const AdminProductAdd = () => {
           value={formData.price}
           onChange={handleChange}
         />
-
-        <Typography style={{ color: "red" }}>
-          Öncelik ne kadar yüksek olursa ürün o kadar ilk sıralarda olur!!!
-        </Typography>
-        <FormControl fullWidth margin="normal">
-          <InputLabel>Öncelik</InputLabel>
-          <Select
-            name="priority"
-            value={formData.priority}
-            onChange={handleChange}
-            required
-          >
-            {Array.from({ length: 10 }, (_, index) => index + 1).map(
-              (priorityValue) => (
-                <MenuItem key={priorityValue} value={priorityValue}>
-                  {priorityValue}
-                </MenuItem>
-              )
-            )}
-          </Select>
-        </FormControl>
         <Button
           type="submit"
           variant="contained"
