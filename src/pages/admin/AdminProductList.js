@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { fetchProducts, deleteProduct } from '../../services/productService';
+import {
+  Container,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+  IconButton,
+} from '@mui/material';
+import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
+import { fetchProducts, deleteProduct, reorderProducts } from '../../services/productService';
 
 const AdminProductList = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState('');
+  const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -34,6 +47,29 @@ const AdminProductList = () => {
     }
   };
 
+  const moveProduct = (index, direction) => {
+    const newProducts = [...products];
+    const targetIndex = index + direction;
+
+    if (targetIndex >= 0 && targetIndex < newProducts.length) {
+      [newProducts[index], newProducts[targetIndex]] = [newProducts[targetIndex], newProducts[index]];
+      setProducts(newProducts);
+      setHasChanges(true);
+    }
+  };
+
+  const handleSaveOrder = async () => {
+    const orderedProductIds = products.map((product) => product.productId);
+    try {
+      await reorderProducts(orderedProductIds);
+      alert('Sıralama başarıyla kaydedildi.');
+      setHasChanges(false);
+    } catch (error) {
+      console.error('Sıralama kaydedilirken hata oluştu:', error);
+      setError('Sıralama kaydedilemedi.');
+    }
+  };
+
   return (
     <Container maxWidth="lg" sx={{ marginTop: '30px' }}>
       <Typography variant="h4" gutterBottom>
@@ -48,6 +84,7 @@ const AdminProductList = () => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell><strong>İşlem</strong></TableCell>
               <TableCell><strong>Ürün Adı</strong></TableCell>
               <TableCell><strong>Kategori</strong></TableCell>
               <TableCell><strong>Fiyat</strong></TableCell>
@@ -55,8 +92,24 @@ const AdminProductList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
+            {products.map((product, index) => (
               <TableRow key={product.productId}>
+                <TableCell>
+                  <IconButton
+                    onClick={() => moveProduct(index, -1)}
+                    disabled={index === 0}
+                    color="primary"
+                  >
+                    <ArrowUpward />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => moveProduct(index, 1)}
+                    disabled={index === products.length - 1}
+                    color="primary"
+                  >
+                    <ArrowDownward />
+                  </IconButton>
+                </TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.category ? product.category.name : 'Kategori belirtilmemiş'}</TableCell>
                 <TableCell>{product.price ? `${product.price} TL` : 'Fiyat belirtilmemiş'}</TableCell>
@@ -64,8 +117,6 @@ const AdminProductList = () => {
                   <Button
                     variant="outlined"
                     color="primary"
-                    component={Link}
-                    to={`/admin/products/${product.productId}`}
                     sx={{ marginRight: '10px' }}
                   >
                     Görüntüle
@@ -83,6 +134,17 @@ const AdminProductList = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      {hasChanges && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSaveOrder}
+          sx={{ marginTop: '20px' }}
+        >
+          Sıralamayı Kaydet
+        </Button>
+      )}
     </Container>
   );
 };

@@ -42,3 +42,8 @@ export const updateProduct = async (productId, updatedProduct) => {
     });
     return response.data;
 };
+
+export const reorderProducts = async (orderedProductIds) => {
+    const response = await axios.post(`${API_BASE_URL}/products/reorder`, orderedProductIds);
+    return response.data;
+};
