@@ -48,7 +48,6 @@ const AdminProductDetail = () => {
     category: { name: "" },
     description: "",
     price: "",
-    priority: "",
   });
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
@@ -182,7 +181,6 @@ const AdminProductDetail = () => {
       const payload = {
         ...updatedProduct,
         price: parseFloat(updatedProduct.price), // String yerine sayıya çevrilir
-        priority: parseInt(updatedProduct.priority, 10), // String yerine sayıya çevrilir
         category: {
           id: updatedProduct.category.id,
           name: updatedProduct.category.name,
@@ -205,7 +203,6 @@ const AdminProductDetail = () => {
       category: { id: product.category.id, name: product.category.name }, // id eklendi
       description: product.description || "",
       price: product.price || "",
-      priority: product.priority || "",
     });
     setIsEditDialogOpen(true);
   };
@@ -247,9 +244,6 @@ const AdminProductDetail = () => {
         </Typography>
         <Typography>
           Açıklama: {product.description || "Açıklama mevcut değil."}
-        </Typography>
-        <Typography>
-          Öncelik: {product.priority || "Açıklama mevcut değil."}
         </Typography>
 
         {/* Fotoğraf Yükleme Butonu */}
@@ -427,26 +421,7 @@ const AdminProductDetail = () => {
               onChange={handleInputChange}
             />
 
-            {/* Öncelik (Zorunlu Alan) */}
-            <TextField
-              fullWidth
-              margin="dense"
-              label="Öncelik"
-              name="priority"
-              type="number"
-              value={updatedProduct.priority}
-              onChange={handleInputChange}
-              error={
-                updatedProduct.priority === null ||
-                updatedProduct.priority === ""
-              }
-              helperText={
-                updatedProduct.priority === null ||
-                updatedProduct.priority === ""
-                  ? "Bu alan zorunludur."
-                  : ""
-              }
-            />
+        
           </DialogContent>
           <DialogActions>
             <Button onClick={handleEditDialogClose} color="secondary">
@@ -457,9 +432,7 @@ const AdminProductDetail = () => {
               color="primary"
               disabled={
                 !updatedProduct.name ||
-                !updatedProduct.category.name ||
-                updatedProduct.priority === null ||
-                updatedProduct.priority === ""
+                !updatedProduct.category.name 
               }
             >
               Güncelle
