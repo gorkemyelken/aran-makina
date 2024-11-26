@@ -24,13 +24,6 @@ export const deleteProduct = async (productId) => {
     return response.data;
 };
 
-export const updateProduct = async (productId, updatedProduct) => {
-    const response = await axios.put(`${API_BASE_URL}/products/update/${productId}`, updatedProduct, {
-        headers: { 'Content-Type': 'application/json' },
-    });
-    return response.data;
-};
-
 export const addProductFeature = async (featureData) => {
     const response = await axios.post(`${API_BASE_URL}/productfeatures/add`, featureData, {
         headers: { 'Content-Type': 'application/json' },
@@ -41,4 +34,11 @@ export const addProductFeature = async (featureData) => {
 export const fetchFeatureNames = async () => {
     const response = await axios.get(`${API_BASE_URL}/featurenames`);
     return response.data.data;
+};
+
+export const updateProduct = async (productId, updatedProduct) => {
+    const response = await axios.put(`${API_BASE_URL}/products/update/${productId}`, updatedProduct, {
+        headers: { 'Content-Type': 'application/json' },
+    });
+    return response.data;
 };
