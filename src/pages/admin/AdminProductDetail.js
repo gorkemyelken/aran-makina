@@ -182,7 +182,7 @@ const AdminProductDetail = () => {
         ...updatedProduct,
         price: parseFloat(updatedProduct.price), // String yerine sayıya çevrilir
         category: {
-          id: updatedProduct.category.id,
+          categoryId: updatedProduct.category.categoryId,
           name: updatedProduct.category.name,
         },
       };
@@ -200,7 +200,7 @@ const AdminProductDetail = () => {
   const handleEditDialogOpen = () => {
     setUpdatedProduct({
       name: product.name,
-      category: { id: product.category.id, name: product.category.name }, // id eklendi
+      category: { categoryId: product.category.categoryId, name: product.category.name }, // id eklendi
       description: product.description || "",
       price: product.price || "",
     });
@@ -368,8 +368,8 @@ const AdminProductDetail = () => {
             {/* Kategori Dropdown (Zorunlu Alan) */}
             <Select
               fullWidth
-              value={updatedProduct.category.id || ""} // `id` değeri seçili
-              name="category.id"
+              value={updatedProduct.category.categoryId || ""} // `id` değeri seçili
+              name="category.categoryId"
               onChange={(e) => {
                 const selectedCategory = categories.find(
                   (cat) => cat.id === parseInt(e.target.value, 10)
@@ -377,7 +377,7 @@ const AdminProductDetail = () => {
                 setUpdatedProduct((prev) => ({
                   ...prev,
                   category: {
-                    id: selectedCategory.id,
+                    id: selectedCategory.categoryId,
                     name: selectedCategory.name,
                   },
                 }));
@@ -389,7 +389,7 @@ const AdminProductDetail = () => {
                 Kategori Seçin
               </MenuItem>
               {categories.map((category) => (
-                <MenuItem key={category.id} value={category.id}>
+                <MenuItem key={category.categoryId} value={category.categoryId}>
                   {category.name}
                 </MenuItem>
               ))}

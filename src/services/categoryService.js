@@ -7,8 +7,8 @@ export const fetchCategories = async () => {
     return response.data.data;
 };
 
-export const deleteCategory = async (id) => {
-    const response = await axios.delete(`${API_BASE_URL}/categories/delete/${id}`);
+export const deleteCategory = async (categoryId) => {
+    const response = await axios.delete(`${API_BASE_URL}/categories/delete/${categoryId}`);
     return response.data;
 };
 

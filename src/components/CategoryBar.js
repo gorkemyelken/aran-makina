@@ -42,10 +42,10 @@ const CategoryBar = () => {
       }}
     >
       {categories.map((category, index) => (
-        <React.Fragment key={category.id}>
+        <React.Fragment key={category.categoryId}>
           <Button
             variant="text"
-            onClick={() => handleCategorySearch(category.id, category.name)}
+            onClick={() => handleCategorySearch(category.categoryId, category.name)}
             sx={{
               color: '#ffffff',
               fontSize: '0.75rem',

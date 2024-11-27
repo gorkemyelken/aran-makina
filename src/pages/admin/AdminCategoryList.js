@@ -35,11 +35,11 @@ const AdminCategoryList = () => {
     loadCategories();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (categoryId) => {
     if (window.confirm('Bu kategoriyi silmek istediğinizden emin misiniz?')) {
       try {
-        await deleteCategory(id);
-        setCategories(categories.filter((category) => category.id !== id));
+        await deleteCategory(categoryId);
+        setCategories(categories.filter((category) => category.categoryId !== categoryId));
         alert('Kategori başarıyla silindi.');
       } catch (err) {
         console.error('Kategori silinirken bir hata oluştu:', err);
@@ -60,7 +60,7 @@ const AdminCategoryList = () => {
   };
 
   const handleSaveOrder = async () => {
-    const orderedCategoryIds = categories.map((category) => category.id);
+    const orderedCategoryIds = categories.map((category) => category.categoryId);
     try {
       await reorderCategories(orderedCategoryIds);
       alert('Sıralama başarıyla kaydedildi.');
@@ -88,7 +88,7 @@ const AdminCategoryList = () => {
         <>
           <List>
             {categories.map((category, index) => (
-              <ListItem key={category.id} divider>
+              <ListItem key={category.categoryId} divider>
                 <Box display="flex" alignItems="center" width="100%">
                   <Box>
                     <IconButton
@@ -115,7 +115,7 @@ const AdminCategoryList = () => {
                   <Button
                     variant="outlined"
                     color="secondary"
-                    onClick={() => handleDelete(category.id)}
+                    onClick={() => handleDelete(category.categoryId)}
                   >
                     SİL
                   </Button>

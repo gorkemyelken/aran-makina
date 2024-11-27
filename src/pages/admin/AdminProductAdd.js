@@ -47,7 +47,7 @@ const AdminProductAdd = () => {
 
   const handleCategoryChange = (e) => {
     const selectedCategory = categories.find(
-      (category) => category.id === e.target.value
+      (category) => category.categoryId === e.target.value
     );
     setFormData({ ...formData, category: selectedCategory });
   };
@@ -94,12 +94,12 @@ const AdminProductAdd = () => {
           <InputLabel>Kategori</InputLabel>
           <Select
             name="category"
-            value={formData.category.id}
+            value={formData.category.categoryId}
             onChange={handleCategoryChange}
             required
           >
             {categories.map((category) => (
-              <MenuItem key={category.id} value={category.id}>
+              <MenuItem key={category.categoryId} value={category.categoryId}>
                 {category.name}
               </MenuItem>
             ))}

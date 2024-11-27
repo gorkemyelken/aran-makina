@@ -36,7 +36,7 @@ const ProductList = () => {
       if (selectedCategory !== null) {
         const filtered = productsData.filter(
           (product) =>
-            product.category && product.category.id === selectedCategory
+            product.category && product.category.categoryId === selectedCategory
         );
         setFilteredProducts(filtered);
       } else {
@@ -63,7 +63,7 @@ const ProductList = () => {
       setFilteredProducts(products);
     } else {
       const filtered = products.filter(
-        (product) => product.category && product.category.id === categoryId
+        (product) => product.category && product.category.categoryId === categoryId
       );
       setFilteredProducts(filtered);
     }
@@ -107,10 +107,10 @@ const ProductList = () => {
         />
         {categories.map((category) => (
           <Chip
-            key={category.id}
+            key={category.categoryId}
             label={category.name}
-            onClick={() => handleCategoryChange(category.id)}
-            className={`product-category-chip ${selectedCategory === category.id ? "selected" : ""}`}
+            onClick={() => handleCategoryChange(category.categoryId)}
+            className={`product-category-chip ${selectedCategory === category.categoryId ? "selected" : ""}`}
           />
         ))}
       </Box>
@@ -124,7 +124,7 @@ const ProductList = () => {
           label="Kategori Seç"
         >
           {categories.map((category) => (
-            <MenuItem key={category.id} value={category.id}>
+            <MenuItem key={category.categoryId} value={category.categoryId}>
               {category.name}
             </MenuItem>
           ))}
