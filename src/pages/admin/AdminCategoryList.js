@@ -9,15 +9,24 @@ import {
   CircularProgress,
   Box,
   IconButton,
+  Avatar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
 } from '@mui/material';
 import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
-import { fetchCategories, deleteCategory, reorderCategories } from '../../services/categoryService';
+import { fetchCategories, deleteCategory, reorderCategories, uploadCategoryPhoto } from '../../services/categoryService';
 
 const AdminCategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -71,6 +80,32 @@ const AdminCategoryList = () => {
     }
   };
 
+  const handleOpenUploadModal = (category) => {
+    setSelectedCategory(category);
+    setUploadModalOpen(true);
+  };
+
+  const handleUploadPhoto = async () => {
+    if (!selectedFile || !selectedCategory) {
+      alert('Lütfen bir dosya seçin ve kategori belirleyin.');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    formData.append('categoryId', selectedCategory.categoryId);
+
+    try {
+      await uploadCategoryPhoto(formData);
+      alert('Fotoğraf başarıyla yüklendi.');
+      setUploadModalOpen(false);
+      setSelectedFile(null);
+      setSelectedCategory(null);
+    } catch (error) {
+      console.error('Fotoğraf yüklenirken hata oluştu:', error);
+      setError('Fotoğraf yüklenemedi.');
+    }
+  };
+
   return (
     <Container maxWidth="md" sx={{ marginTop: '30px' }}>
       <Typography variant="h4" gutterBottom>
@@ -90,6 +125,7 @@ const AdminCategoryList = () => {
             {categories.map((category, index) => (
               <ListItem key={category.categoryId} divider>
                 <Box display="flex" alignItems="center" width="100%">
+                  {/* Sıralama Butonları */}
                   <Box>
                     <IconButton
                       onClick={() => moveCategory(index, -1)}
@@ -106,18 +142,39 @@ const AdminCategoryList = () => {
                       <ArrowDownward />
                     </IconButton>
                   </Box>
+
+                  {/* Kategori Görseli */}
+                  <Avatar
+                    src={category.categoryPhotoUrl}
+                    alt={category.name}
+                    sx={{ width: 56, height: 56, marginLeft: '16px' }}
+                  />
+
+                  {/* Kategori Bilgileri */}
                   <Box flexGrow={1} ml={2}>
                     <ListItemText
                       primary={category.name}
                       secondary={category.description ? category.description : 'Açıklama yok'}
                     />
                   </Box>
+
+                  {/* Sil Butonu */}
                   <Button
                     variant="outlined"
                     color="secondary"
                     onClick={() => handleDelete(category.categoryId)}
                   >
                     SİL
+                  </Button>
+
+                  {/* Fotoğraf Yükleme Butonu */}
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => handleOpenUploadModal(category)}
+                    sx={{ marginLeft: '10px' }}
+                  >
+                    Fotoğraf Yükle
                   </Button>
                 </Box>
               </ListItem>
@@ -136,6 +193,30 @@ const AdminCategoryList = () => {
           )}
         </>
       )}
+
+      {/* Fotoğraf Yükleme Modalı */}
+      <Dialog open={uploadModalOpen} onClose={() => setUploadModalOpen(false)}>
+        <DialogTitle>Fotoğraf Yükle</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1" gutterBottom>
+            {selectedCategory ? `Kategori: ${selectedCategory.name}` : ''}
+          </Typography>
+          <TextField
+            type="file"
+            inputProps={{ accept: 'image/*' }}
+            fullWidth
+            onChange={(e) => setSelectedFile(e.target.files[0])}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setUploadModalOpen(false)} color="secondary">
+            İptal
+          </Button>
+          <Button onClick={handleUploadPhoto} color="primary">
+            Yükle
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Popover, Select, MenuItem } from '@mui/material';
+import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { fetchCategories } from '../services/categoryService';
 import CircleIcon from '@mui/icons-material/Circle';
+import '../styles/CategoryBar.css';
 
 const CategoryBar = () => {
   const [categories, setCategories] = useState([]);
@@ -26,39 +27,18 @@ const CategoryBar = () => {
   };
 
   return (
-    <Box
-      sx={{
-        position: 'sticky',
-        top: 60,
-        zIndex: 1000,
-        display: { xs: 'none', md: 'flex' },
-        padding: '10px 20px',
-        backgroundColor: '#014DAD',
-        color: '#ffffff',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 2,
-        borderBottom: '1px solid #ddd',
-      }}
-    >
+    <Box className="category-bar">
       {categories.map((category, index) => (
         <React.Fragment key={category.categoryId}>
-          <Button
-            variant="text"
+          <button
+            className="category-button"
             onClick={() => handleCategorySearch(category.categoryId, category.name)}
-            sx={{
-              color: '#ffffff',
-              fontSize: '0.75rem',
-              padding: '5px 15px',
-              backgroundColor: '#015bb5',
-              borderRadius: 2,
-              '&:hover': {
-                backgroundColor: '#013f8a',
-              },
-            }}
           >
             {category.name}
-          </Button>
+            <div className="category-photo">
+              <img src={category.categoryPhotoUrl} alt={category.name} />
+            </div>
+          </button>
           {index < categories.length - 1 && (
             <CircleIcon
               sx={{ color: '#ffffff', fontSize: '0.5rem', marginLeft: '5px', marginRight: '5px' }}

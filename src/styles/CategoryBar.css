@@ -1,0 +1,65 @@
+.category-bar {
+    position: sticky;
+    top: 60px;
+    z-index: 1000;
+    display: flex;
+    padding: 10px 20px;
+    background-color: #014DAD;
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .category-button {
+    position: relative;
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 5px 15px;
+    background-color: #015bb5;
+    border-radius: 8px;
+    text-transform: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .category-button:hover {
+    background-color: #013f8a;
+  }
+  
+  /* Fotoğraf kutusu */
+  .category-photo {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 2000;
+  }
+  
+  .category-photo img {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+  }
+  
+  .category-photo span {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    color: #333;
+    font-size: 0.8rem;
+  }
+  
+  /* Hover ile fotoğraf kutusunu göster */
+  .category-button:hover .category-photo {
+    display: block;
+  }
+  
