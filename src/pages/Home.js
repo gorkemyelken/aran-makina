@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
-import { Instagram, WhatsApp, Email, Facebook } from "@mui/icons-material";
+import { WhatsApp } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import "../styles/Home.css";
 
@@ -38,11 +38,11 @@ const Home = () => {
             transition={{ duration: 1 }}
           >
             <Typography variant="h3" className="hero-title">
-              Gücünüzü Katlayacak Çözümler
+              Güçlü Çözümler, Güvenilir Ekipmanlar
             </Typography>
             <Typography variant="body1" className="hero-description">
-              Dayanıklı, güvenilir ve modern ekipmanlarla iş süreçlerinizi
-              optimize edin. Endüstri lideri çözümlerimizle bir adım önde olun.
+              İş süreçlerinizi kolaylaştıracak dayanıklı ve modern ekipmanlarla
+              tanışın. Sizin için burada, bir mesaj uzağınızdayız.
             </Typography>
             <Box className="hero-buttons">
               <Link to="/urunler" className="hero-button primary">
@@ -50,6 +50,16 @@ const Home = () => {
               </Link>
               <Link to="/hakkimizda" className="hero-button secondary">
                 Daha Fazla Bilgi
+              </Link>
+            </Box>
+            <Box className="whatsapp-highlight">
+              <Link
+                to="https://wa.me/905436256412"
+                className="whatsapp-button"
+                target="_blank"
+              >
+                <WhatsApp style={{ marginRight: "10px" }} />
+                WhatsApp ile Hemen İletişime Geçin!
               </Link>
             </Box>
           </motion.div>
@@ -82,33 +92,6 @@ const Home = () => {
             </Link>
           </Box>
         )}
-
-        <Box className="social-icons">
-          <IconButton
-            href="https://facebook.com"
-            target="_blank"
-            aria-label="Facebook"
-          >
-            <Facebook style={{ color: "#3b5998" }} />
-          </IconButton>
-          <IconButton
-            href="https://www.instagram.com/aranmakine/"
-            target="_blank"
-            aria-label="Instagram"
-          >
-            <Instagram style={{ color: "#C13584" }} />
-          </IconButton>
-          <IconButton
-            href="https://wa.me/905436256412"
-            target="_blank"
-            aria-label="WhatsApp"
-          >
-            <WhatsApp style={{ color: "#25D366" }} />
-          </IconButton>
-          <IconButton href="mailto:bilgi@arancaraskal.com" aria-label="Email">
-            <Email style={{ color: "#014DAD" }} />
-          </IconButton>
-        </Box>
       </Container>
     </Box>
   );

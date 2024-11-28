@@ -7,7 +7,7 @@
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 300px;
+  height: 350px;
   background: url('../../public/hero-section.jpg') no-repeat center center/cover;
   border-radius: 20px;
   overflow: hidden;
@@ -58,6 +58,8 @@
   font-weight: bold;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
 }
 
 .hero-button.primary {
@@ -76,6 +78,30 @@
   transform: scale(1.05);
   background-color: #014dad;
   color: #ffffff;
+}
+
+.whatsapp-highlight {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.whatsapp-button {
+  text-decoration: none;
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white !important;
+  background-color: #25D366;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.whatsapp-button:hover {
+  background-color: #1EBE57;
+  transform: scale(1.1);
 }
 
 /* Mobil Görünüm */
