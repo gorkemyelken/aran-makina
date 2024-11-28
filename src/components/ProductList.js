@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Container,
   Typography,
@@ -7,7 +7,6 @@ import {
   Box,
   Chip,
   Divider,
-  Breadcrumbs,
   Select,
   MenuItem,
   FormControl,
@@ -71,31 +70,15 @@ const ProductList = () => {
 
   return (
     <Container className="products-container">
-      {/* Modern Breadcrumbs Bölümü */}
-      <Breadcrumbs aria-label="breadcrumb" sx={{ marginBottom: "20px", fontSize: "1.1rem" }}>
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-            color: "#014DAD",
-            fontWeight: "500",
-            fontSize: "1rem",
-            transition: "color 0.3s ease",
-          }}
-        >
-          Anasayfa
-        </Link>
-        <Typography color="text.primary" style={{ fontWeight: "500" }}>
-          Ürünler
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <Typography variant="h5" className="products-title">
+          Ürünlerimiz
         </Typography>
-        <Typography color="text.primary" style={{ fontWeight: "500" }}>
-          {selectedCategory ? categories.find(cat => cat.id === selectedCategory)?.name : "Tüm Ürünler"}
-        </Typography>
-      </Breadcrumbs>
-
-      <Typography variant="h5" className="products-title">
-        Ürünlerimiz
-      </Typography>
+      </motion.div>
       <Divider className="divider" />
 
       {/* Kategori Çubuğu (Mobilde Dropdown Menüsü) */}

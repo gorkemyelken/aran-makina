@@ -114,7 +114,6 @@ function AnimatedRoutes() {
           </Route>
         </Routes>
       </AnimatePresence>
-      {!isAdminRoute && <Footer />}
       {!isAdminRoute && (
   <a
     href="https://wa.me/905436256412"
