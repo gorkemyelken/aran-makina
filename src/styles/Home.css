@@ -90,13 +90,13 @@
   text-decoration: none;
   padding: 14px 28px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: bold !important;
   color: white !important;
-  background-color: #25D366;
+  background-color: #25D366 !important;
   border-radius: 5px;
   display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease-in-out, transform 0.2s;
+  align-items: center !important;
+  transition: background-color 0.3s ease-in-out, transform 0.2s !important;
 }
 
 .whatsapp-button:hover {
@@ -121,7 +121,7 @@
 }
 
 .product-title {
-  color: #014dad;
+  color: black;
   text-align: center;
   margin-bottom: 20px;
   font-weight: bold;
@@ -141,7 +141,7 @@
   font-size: 18px;
   border: 2px solid #014dad;
   padding: 8px 16px;
-  border-radius: 5px;
+  border-radius: 5px !important;
   transition: background-color 0.3s, color 0.3s;
 }
 
