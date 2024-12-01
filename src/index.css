@@ -1,6 +1,21 @@
-body {
+/* Tüm sayfayı kapsaması için body ve html ayarları */
+html, body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif !important;
 }
 
+/* #root içinde flex düzen */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; /* İçerik az olsa bile ekran boyutunu doldurur */
+}
 
+/* İçeriği esnetmek için content alanı */
+.content {
+  flex: 1; /* İçerik alanı büyür, footer aşağı itilmiş olur */
+}

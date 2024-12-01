@@ -1,48 +1,98 @@
+/* Footer */
 .footer-container {
-  background-color: #004080;
-  color: #ffffff;
-  padding: 20px 0;
-  text-align: center;
-  position: relative;
-  bottom: 0; 
-  width: 100%;
+  background-color: #004080; /* Marka rengi */
+  color: #ffffff !important;
+  padding: 10px 20px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.footer-section {
+  margin-bottom: 10px !important;
+}
+
+.footer-heading {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 
 .footer-text {
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 14px !important;
+  margin-bottom: 8px !important;
+  color: #d1d1d1 !important;
 }
 
+/* Hızlı Bağlantılar */
 .footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
 }
 
 .footer-link {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.3s;
+  color: #ffffff !important; /* Link rengi */
+  text-decoration: none !important; /* Alt çizgi kaldırıldı */
+  font-size: 14px !important;
+  transition: color 0.3s !important;
 }
 
 .footer-link:hover {
-  color: #cce0ff;
+  color: #cce0ff !important; /* Hover rengi */
 }
 
-/* Gizli tıklama alanını en altta, sola yerleştiriyoruz */
+/* Sosyal Medya */
+.footer-social {
+  display: flex !important;
+  gap: 15px !important;
+  flex-direction: column !important;
+}
+
+.footer-social-icon {
+  color: #ffffff !important; /* Sosyal medya butonlarının rengi */
+  text-decoration: none !important; /* Alt çizgi kaldırıldı */
+  font-size: 14px !important;
+  transition: color 0.3s !important;
+}
+
+.footer-social-icon:hover {
+  color: #cce0ff !important; /* Hover rengi */
+}
+
+/* Footer Alt Bilgi */
+.footer-bottom {
+  border-top: 1px solid #ffffff33 !important;
+  padding-top: 10px !important;
+  text-align: center !important;
+}
+
+.footer-bottom-text {
+  font-size: 12px !important;
+  color: #d1d1d1 !important;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .footer-links {
+    gap: 5px;
+  }
+  .footer-social {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+  .footer-section {
+    text-align: center;
+  }
+}
+
+/* Gizli Tıklama Alanı */
 .secret-access {
-  position: absolute; /* Bu şekilde konumlandırmayı mutlak yapıyoruz */
-  bottom: 10px; /* Alt taraftan 10px */
-  left: 10px; /* Sol taraftan 10px */
+  position: relative;
+  bottom: 10px;
+  left: 10px;
   width: 30px;
   height: 30px;
   background-color: transparent;
   cursor: pointer;
-}
-
-/* Mobil cihazlarda gizli alanı gizle */
-@media (max-width: 768px) {
-  .secret-access {
-    display: none;
-  }
 }
