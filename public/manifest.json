@@ -1,25 +1,21 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Aran Makina",
+  "name": "Aran Makina - Caraskal İmalatı ve Endüstriyel Çözümler",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/jpeg"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#014DAD",
+  "background_color": "#ffffff",
+  "description": "Aran Makina, 1971'den beri kaliteli caraskal imalatı ve endüstriyel çözümler sunar."
 }
