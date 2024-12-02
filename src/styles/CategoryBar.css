@@ -1,5 +1,5 @@
 .category-bar {
-    position: sticky;
+    position: static;
     top: 60px;
     z-index: 1000;
     display: flex;

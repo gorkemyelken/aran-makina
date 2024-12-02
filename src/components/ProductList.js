@@ -11,6 +11,7 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  CircularProgress,
 } from "@mui/material";
 import { fetchProducts } from "../services/productService";
 import { fetchCategories } from "../services/categoryService";
@@ -26,9 +27,11 @@ const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState(
     location.state ? location.state.categoryId : null
   );
+  const [loading, setLoading] = useState(true); // Yükleme durumu
 
   useEffect(() => {
     const loadProducts = async () => {
+      setLoading(true); // Yükleme başlıyor
       const productsData = await fetchProducts();
       setProducts(productsData);
 
@@ -41,6 +44,8 @@ const ProductList = () => {
       } else {
         setFilteredProducts(productsData);
       }
+
+      setLoading(false); // Yükleme tamamlandı
     };
 
     const loadCategories = async () => {
@@ -115,25 +120,31 @@ const ProductList = () => {
       </FormControl>
 
       {/* Ürünler Listesi */}
-      <Grid container spacing={4}>
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product, index) => (
-            <Grid item key={product.productId} xs={12} sm={6} md={4}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.3 }}
-              >
-                <ProductCard product={product} />
-              </motion.div>
-            </Grid>
-          ))
-        ) : (
-          <Typography sx={{ textAlign: "center", marginTop: "20px", width: "100%" }}>
-            Bu kategoride ürün bulunamadı.
-          </Typography>
-        )}
-      </Grid>
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
+          <CircularProgress /> {/* Yüklenirken spinner */}
+        </Box>
+      ) : (
+        <Grid container spacing={4}>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product, index) => (
+              <Grid item key={product.productId} xs={12} sm={6} md={4}>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              </Grid>
+            ))
+          ) : (
+            <Typography sx={{ textAlign: "center", marginTop: "20px", width: "100%" }}>
+              Bu kategoride ürün bulunamadı.
+            </Typography>
+          )}
+        </Grid>
+      )}
     </Container>
   );
 };

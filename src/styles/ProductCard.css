@@ -1,6 +1,7 @@
+/* Kart genel stili */
 .product-card {
   max-width: 345px;
-  height: auto;
+  height: 450px; /* Sabit yükseklik */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,13 +17,16 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Kart başlığı */
 .product-title {
   font-family: 'Poppins', sans-serif !important;
   font-weight: bold;
   text-align: center;
   color: #000;
+  margin-bottom: 10px;
 }
 
+/* Kart eylem butonları */
 .card-actions {
   display: flex;
   justify-content: space-between;
@@ -30,6 +34,7 @@
   padding: 0 16px;
 }
 
+/* Detaylar butonu */
 .details-button {
   color: #004080;
   font-family: 'Poppins', sans-serif !important;
@@ -42,6 +47,7 @@
   color: #fff;
 }
 
+/* WhatsApp butonu */
 .whatsapp-button {
   color: #25D366 !important;
   transition: transform 0.3s;
@@ -51,9 +57,17 @@
   transform: scale(1.1);
 }
 
-/* Resimlerin düzgün şekilde görünmesini sağlamak için */
+/* Resimlerin düzgün görünmesi */
 .product-card img {
   width: 100%;
-  height: 300px !important; /* Yüksekliği sabitleyin, ihtiyacınıza göre ayar yapın */
-  object-fit: contain !important; /* Resmin kırpılmasını önler, ancak bazı kısımlarını kaybedebilir */
+  height: 250px; /* Sabit resim yüksekliği */
+  object-fit: contain; /* Resmin kutuya sığmasını sağlar */
+}
+
+/* Kart içerik bölümü */
+.MuiCardContent-root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
